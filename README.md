@@ -1,25 +1,67 @@
-# AdMob Native Compose
+# AdMob Native Template Compose
 
-A Jetpack Compose library for AdMob Native Ad components. It supports Material 3 theming and has been separated into a reusable library for various projects.
+<div align="center">
 
-## Features
+**A modern, declarative AdMob Native Ads library for Jetpack Compose**
 
-- ✅ Full Jetpack Compose support
-- ✅ Material 3 theme integration
-- ✅ Customizable background and text colors
-- ✅ Small/Medium template layouts
-- ✅ ViewBinding-based implementation
+[![](https://jitpack.io/v/kmshack/Admob-Native-Template-Compose.svg)](https://jitpack.io/#kmshack/Admob-Native-Template-Compose)
+[![API](https://img.shields.io/badge/API-25%2B-brightgreen.svg?style=flat)](https://android-arsenal.com/api?level=25)
+[![Kotlin](https://img.shields.io/badge/Kotlin-2.1.0-blue.svg?logo=kotlin)](http://kotlinlang.org)
+[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
+
+</div>
+
+---
+
+## Overview
+
+AdMob Native Template Compose provides ready-to-use, fully customizable native ad templates built specifically for Jetpack Compose. Seamlessly integrate Google AdMob native ads into your modern Android applications with Material 3 theming support and minimal boilerplate.
+
+### Why This Library?
+
+- 🚀 **Zero Boilerplate** - Drop-in composables with sensible defaults
+- 🎨 **Material 3 Integration** - Automatically adapts to your app's theme
+- 📱 **Multiple Templates** - Small, Medium, and Headline layouts included
+- ⚡ **Type-Safe** - Fully written in Kotlin with null safety
+- 🔧 **Highly Customizable** - Override colors, modifiers, and styling
+- 📦 **Lightweight** - Minimal dependencies, maximum performance
+
+---
+
+## Table of Contents
+
+- [Requirements](#requirements)
+- [Installation](#installation)
+- [Quick Start](#quick-start)
+- [Available Templates](#available-templates)
+- [API Reference](#api-reference)
+- [Advanced Usage](#advanced-usage)
+- [Sample App](#sample-app)
+- [Dependencies](#dependencies)
+- [Contributing](#contributing)
+- [License](#license)
+
+---
+
+## Requirements
+
+- **Minimum SDK**: 25 (Android 7.1)
+- **Compile SDK**: 36+
+- **Kotlin**: 1.9.0+
+- **Jetpack Compose**: BOM 2025.06.00+
+- **Google Play Services Ads**: 24.4.0+
+
+---
 
 ## Installation
 
-[![](https://jitpack.io/v/kmshack/Admob-Native-Template-Compose.svg)](https://jitpack.io/#kmshack/Admob-Native-Template-Compose)
+### Gradle Setup
 
-### Add to your project
-
-**Step 1.** Add the JitPack repository to your `settings.gradle.kts`:
+**Step 1:** Add the JitPack repository to your `settings.gradle.kts` (or project-level `build.gradle`):
 
 ```kotlin
 dependencyResolutionManagement {
+    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
     repositories {
         google()
         mavenCentral()
@@ -28,7 +70,7 @@ dependencyResolutionManagement {
 }
 ```
 
-**Step 2.** Add the dependency to your app's `build.gradle.kts`:
+**Step 2:** Add the dependency to your app module's `build.gradle.kts`:
 
 ```kotlin
 dependencies {
@@ -36,133 +78,307 @@ dependencies {
 }
 ```
 
-### Alternative: Local Module Installation
+**Step 3:** Sync your project
 
-If you want to use it as a local module:
+---
 
-**1.** Add module to `settings.gradle.kts`:
+## Quick Start
 
-```kotlin
-include(":admob-native-compose")
+### 1. Initialize AdMob
+
+Add your AdMob App ID to `AndroidManifest.xml`:
+
+```xml
+<application>
+    <meta-data
+        android:name="com.google.android.gms.ads.APPLICATION_ID"
+        android:value="ca-app-pub-xxxxxxxxxxxxxxxx~yyyyyyyyyy"/>
+</application>
 ```
 
-**2.** Add dependency to `app/build.gradle.kts`:
+### 2. Load and Display a Native Ad
 
 ```kotlin
-dependencies {
-   implementation(project(":admob-native-compose"))
-}
-```
-
-## Usage
-
-### Basic Usage Example
-
-```kotlin
-import com.soosu.admobnative.NativeAdSmallBox
-import androidx.compose.material3.MaterialTheme
-
-@Composable
-fun MyScreen() {
-   val nativeAd: NativeAd? = // ... Load AdMob Native Ad
-
-      Box(
-         modifier = Modifier
-            .fillMaxWidth()
-            .wrapContentHeight()
-            .clip(RoundedCornerShape(8.dp))
-      ) {
-         NativeAdSmallBox(
-            nativeAd = nativeAd,
-            modifier = Modifier.fillMaxWidth(),
-            backgroundColor = MaterialTheme.colorScheme.surfaceVariant,
-            textColor = MaterialTheme.colorScheme.onBackground
-         )
-      }
-}
-```
-
-### NativeAdSmallBox Parameters
-
-- **nativeAd**: `NativeAd?` - AdMob Native Ad object
-- **modifier**: `Modifier` - Compose Modifier (default: `Modifier`)
-- **backgroundColor**: `Color` - Ad background color (default: `MaterialTheme.colorScheme.surfaceVariant`)
-- **textColor**: `Color` - Text color (default: `MaterialTheme.colorScheme.onBackground`)
-
-### Native Ad Loading Example
-
-```kotlin
+import androidx.compose.runtime.*
+import androidx.compose.ui.platform.LocalContext
 import com.google.android.gms.ads.AdLoader
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.nativead.NativeAd
 import com.google.android.gms.ads.nativead.NativeAdOptions
+import com.soosu.admobnative.NativeAdSmallBox
 
-var nativeAd by remember { mutableStateOf<NativeAd?>(null) }
+@Composable
+fun MyScreen() {
+    val context = LocalContext.current
+    var nativeAd by remember { mutableStateOf<NativeAd?>(null) }
 
-LaunchedEffect(Unit) {
-    val adLoader = AdLoader.Builder(context, "YOUR_AD_UNIT_ID")
-        .forNativeAd { ad ->
-            nativeAd = ad
-        }
-        .withNativeAdOptions(
-            NativeAdOptions.Builder()
-                .setAdChoicesPlacement(NativeAdOptions.ADCHOICES_TOP_RIGHT)
-                .build()
-        )
-        .build()
+    LaunchedEffect(Unit) {
+        val adLoader = AdLoader.Builder(context, "YOUR_AD_UNIT_ID")
+            .forNativeAd { ad -> nativeAd = ad }
+            .withNativeAdOptions(
+                NativeAdOptions.Builder()
+                    .setAdChoicesPlacement(NativeAdOptions.ADCHOICES_TOP_RIGHT)
+                    .build()
+            )
+            .build()
 
-    adLoader.loadAd(AdRequest.Builder().build())
+        adLoader.loadAd(AdRequest.Builder().build())
+    }
+
+    // Display the ad
+    NativeAdSmallBox(
+        nativeAd = nativeAd,
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(16.dp)
+    )
 }
-
- Box(
-    modifier = Modifier
-        .fillMaxWidth()
-        .wrapContentHeight()
-        .clip(RoundedCornerShape(8.dp))
-) {
-    NativeAdSmallBox(nativeAd = nativeAd)
-}
-
 ```
 
-## Template Layouts
+---
 
-The library provides two templates:
+## Available Templates
 
-1. **Small Template** (`gnt_ad_small_template_view.xml`)
-<img width="459" height="119" alt="스크린샷 2025-10-17 오후 6 22 45" src="https://github.com/user-attachments/assets/9e8aa35f-73f5-4a48-847b-907b7b426e5b" />
+The library provides three pre-built templates optimized for different use cases:
 
-   - Displays headline and advertiser information with a small image
-   - Compact layout
+### 1. Small Template - `NativeAdSmallBox`
 
+<img width="459" height="119" alt="Small Template Preview" src="https://github.com/user-attachments/assets/9e8aa35f-73f5-4a48-847b-907b7b426e5b" />
 
-2. **Medium Template** (`gnt_ad_medium_template_view.xml`)
-<img width="457" height="356" alt="스크린샷 2025-10-17 오후 6 21 21" src="https://github.com/user-attachments/assets/df541d69-5c7b-4f2d-b1b8-12d82052fb5d" />
-   
-   - Displays headline and advertiser information with a large image
-   - Layout that takes up more space
+**Best for:** List items, compact spaces, inline content
 
-3. **Headline Template** (`gnt_ad_headline_template_view.xml`)
-<img width="432" height="46" alt="스크린샷 2025-10-17 오후 10 46 35" src="https://github.com/user-attachments/assets/daf1f09b-a2b3-41e3-bfdf-1463b6e256bc" />
+**Features:**
+- Compact horizontal layout
+- Small app icon with headline
+- Advertiser name and CTA button
+- Ideal for RecyclerView/LazyColumn items
 
+```kotlin
+NativeAdSmallBox(
+    nativeAd = nativeAd,
+    modifier = Modifier.fillMaxWidth()
+)
+```
 
-   
-Each template is used in the `NativeAdSmallBox` and `NativeAdMediumBox` and `NativeAdHeadlineBox`composables.
+### 2. Medium Template - `NativeAdMediumBox`
+
+<img width="457" height="356" alt="Medium Template Preview" src="https://github.com/user-attachments/assets/df541d69-5c7b-4f2d-b1b8-12d82052fb5d" />
+
+**Best for:** Cards, featured content, feed items
+
+**Features:**
+- Prominent media image (1200x628 recommended)
+- Full headline and body text
+- Advertiser branding
+- Call-to-action button
+- Perfect for news feeds or content cards
+
+```kotlin
+NativeAdMediumBox(
+    nativeAd = nativeAd,
+    modifier = Modifier.fillMaxWidth()
+)
+```
+
+### 3. Headline Template - `NativeAdHeadlineBox`
+
+<img width="432" height="46" alt="Headline Template Preview" src="https://github.com/user-attachments/assets/daf1f09b-a2b3-41e3-bfdf-1463b6e256bc" />
+
+**Best for:** Minimal spaces, headers, banners
+
+**Features:**
+- Ultra-compact design
+- Headline only with small icon
+- Minimal visual footprint
+- Great for toolbars or between content sections
+
+```kotlin
+NativeAdHeadlineBox(
+    nativeAd = nativeAd,
+    modifier = Modifier.fillMaxWidth()
+)
+```
+
+---
+
+## API Reference
+
+### Common Parameters
+
+All template composables share these parameters:
+
+| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `nativeAd` | `NativeAd?` | Required | The loaded AdMob native ad object |
+| `modifier` | `Modifier` | `Modifier` | Compose modifier for layout customization |
+| `backgroundColor` | `Color` | `MaterialTheme.colorScheme.surfaceVariant` | Background color of the ad container |
+| `textColor` | `Color` | `MaterialTheme.colorScheme.onBackground` | Text color for ad content |
+
+### Example: Custom Styling
+
+```kotlin
+NativeAdMediumBox(
+    nativeAd = nativeAd,
+    modifier = Modifier
+        .fillMaxWidth()
+        .clip(RoundedCornerShape(16.dp))
+        .shadow(4.dp),
+    backgroundColor = Color(0xFFF5F5F5),
+    textColor = Color(0xFF333333)
+)
+```
+
+---
+
+## Advanced Usage
+
+### Handling Ad Load Lifecycle
+
+```kotlin
+@Composable
+fun AdWithLoadingState() {
+    val context = LocalContext.current
+    var nativeAd by remember { mutableStateOf<NativeAd?>(null) }
+    var isLoading by remember { mutableStateOf(true) }
+    var isError by remember { mutableStateOf(false) }
+
+    LaunchedEffect(Unit) {
+        val adLoader = AdLoader.Builder(context, "YOUR_AD_UNIT_ID")
+            .forNativeAd { ad ->
+                nativeAd = ad
+                isLoading = false
+            }
+            .withAdListener(object : AdListener() {
+                override fun onAdFailedToLoad(error: LoadAdError) {
+                    isLoading = false
+                    isError = true
+                }
+            })
+            .build()
+
+        adLoader.loadAd(AdRequest.Builder().build())
+    }
+
+    when {
+        isLoading -> CircularProgressIndicator()
+        isError -> Text("Ad failed to load")
+        else -> NativeAdSmallBox(nativeAd = nativeAd)
+    }
+}
+```
+
+### Dark Mode Support
+
+The library automatically adapts to Material 3 theme changes:
+
+```kotlin
+MaterialTheme(
+    colorScheme = if (isSystemInDarkTheme()) darkColorScheme() else lightColorScheme()
+) {
+    NativeAdMediumBox(
+        nativeAd = nativeAd,
+        // Automatically uses theme colors
+    )
+}
+```
+
+### Memory Management
+
+Remember to destroy ads when the composable leaves the composition:
+
+```kotlin
+@Composable
+fun AdWithCleanup() {
+    var nativeAd by remember { mutableStateOf<NativeAd?>(null) }
+
+    DisposableEffect(Unit) {
+        onDispose {
+            nativeAd?.destroy()
+        }
+    }
+
+    NativeAdSmallBox(nativeAd = nativeAd)
+}
+```
+
+---
+
+## Sample App
+
+Check out the [sample app](./sample) (coming soon) for complete implementation examples including:
+
+- Multiple ad placements
+- LazyColumn integration
+- Custom styling examples
+- Error handling patterns
+- Test ad unit IDs
+
+---
 
 ## Dependencies
 
 This library uses the following dependencies:
 
-- Jetpack Compose BOM
-- Material 3
-- Google Play Services Ads
-- AndroidX ConstraintLayout
-- AndroidX CardView
+| Dependency | Version | Purpose |
+|------------|---------|---------|
+| Jetpack Compose BOM | 2025.06.00 | Compose runtime and UI |
+| Material 3 | 1.3.2+ | Material Design components |
+| Google Play Services Ads | 24.4.0 | AdMob SDK |
+| AndroidX Core KTX | 1.16.0 | Core Android utilities |
+| ConstraintLayout | 2.2.1 | Layout for XML templates |
+| CardView | 1.0.0 | Card components |
 
-## License
-
-This library follows the original project license.
+---
 
 ## Contributing
 
-Please submit bug reports or feature suggestions as issues.
+Contributions are welcome! Here's how you can help:
+
+1. **Report Bugs**: Open an issue with detailed reproduction steps
+2. **Suggest Features**: Propose new templates or improvements
+3. **Submit PRs**: Fork, create a feature branch, and submit a pull request
+
+### Development Setup
+
+```bash
+git clone https://github.com/kmshack/Admob-Native-Template-Compose.git
+cd Admob-Native-Template-Compose
+./gradlew build
+```
+
+---
+
+## License
+
+```
+Copyright 2025 kmshack
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+```
+
+---
+
+## Support
+
+- **Issues**: [GitHub Issues](https://github.com/kmshack/Admob-Native-Template-Compose/issues)
+- **Discussions**: [GitHub Discussions](https://github.com/kmshack/Admob-Native-Template-Compose/discussions)
+
+---
+
+<div align="center">
+
+**Made with ❤️ for the Android community**
+
+[⭐ Star this repo](https://github.com/kmshack/Admob-Native-Template-Compose) if you find it useful!
+
+</div>
