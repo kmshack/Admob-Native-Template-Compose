@@ -108,14 +108,18 @@ The library provides two templates:
    - Compact layout
 
 
-3. **Medium Template** (`gnt_ad_medium_template_view.xml`)
+2. **Medium Template** (`gnt_ad_medium_template_view.xml`)
 <img width="457" height="356" alt="스크린샷 2025-10-17 오후 6 21 21" src="https://github.com/user-attachments/assets/df541d69-5c7b-4f2d-b1b8-12d82052fb5d" />
    
    - Displays headline and advertiser information with a large image
    - Layout that takes up more space
 
+3. **Headline Template** (`gnt_ad_headline_template_view.xml`)
+<img width="432" height="46" alt="스크린샷 2025-10-17 오후 10 46 35" src="https://github.com/user-attachments/assets/daf1f09b-a2b3-41e3-bfdf-1463b6e256bc" />
 
-Each template is used in the `NativeAdSmallBox` and `NativeAdMediumBox` composables.
+
+   
+Each template is used in the `NativeAdSmallBox` and `NativeAdMediumBox` and `NativeAdHeadlineBox`composables.
 
 ## Dependencies
 
