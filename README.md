@@ -79,7 +79,16 @@ LaunchedEffect(Unit) {
     adLoader.loadAd(AdRequest.Builder().build())
 }
 
-NativeAdSmallBox(nativeAd = nativeAd)
+ Box(
+    modifier = Modifier
+        .fillMaxWidth()
+        .wrapContentHeight()
+        .clip(RoundedCornerShape(8.dp))
+        .background(color = MaterialTheme.colorScheme.surfaceVariant),
+) {
+    NativeAdSmallBox(nativeAd = nativeAd)
+}
+
 ```
 
 ## 템플릿 레이아웃
