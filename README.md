@@ -38,12 +38,20 @@ import androidx.compose.material3.MaterialTheme
 fun MyScreen() {
     val nativeAd: NativeAd? = // ... AdMob Native Ad 로드
 
-       NativeAdSmallBox(
-        nativeAd = nativeAd,
-        modifier = Modifier.fillMaxWidth(),
-        backgroundColor = MaterialTheme.colorScheme.surfaceVariant,
-        textColor = MaterialTheme.colorScheme.onBackground
-    )
+    Box(
+        modifier = Modifier
+            .fillMaxWidth()
+            .wrapContentHeight()
+            .clip(RoundedCornerShape(8.dp))
+            .background(color = MaterialTheme.colorScheme.surfaceVariant),
+    ) {
+           NativeAdSmallBox(
+            nativeAd = nativeAd,
+            modifier = Modifier.fillMaxWidth(),
+            backgroundColor = MaterialTheme.colorScheme.surfaceVariant,
+            textColor = MaterialTheme.colorScheme.onBackground
+        )
+    }
 }
 ```
 
