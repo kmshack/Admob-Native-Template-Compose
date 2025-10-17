@@ -87,10 +87,11 @@ NativeAdSmallBox(nativeAd = nativeAd)
 라이브러리는 두 가지 템플릿을 제공합니다:
 
 1. **Small Template** (`gnt_ad_small_white_image_template_view.xml`)
-<img width="455" height="116" alt="스크린샷 2025-10-17 오후 5 46 54" src="https://github.com/user-attachments/assets/87fb9796-52ce-42b1-9ed9-9fd69a32dfc1" />
+<img width="460" height="119" alt="스크린샷 2025-10-17 오후 5 51 58" src="https://github.com/user-attachments/assets/eb887bfd-7129-4653-bc7f-e76eac8e501d" />
 
    - 작은 이미지와 함께 헤드라인, 광고주 정보 표시
    - 컴팩트한 레이아웃
+
 
 2. **Medium Template** (`gnt_ad_medium_white_image_template_view.xml`)
 <img width="461" height="314" alt="스크린샷 2025-10-17 오후 5 48 45" src="https://github.com/user-attachments/assets/253bd29e-c487-46b4-99f2-241bef5a4751" />
