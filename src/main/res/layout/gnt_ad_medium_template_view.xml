@@ -83,13 +83,28 @@
             app:layout_constraintStart_toEndOf="@+id/ad"
             app:layout_constraintTop_toTopOf="@+id/ad" />
 
+        <TextView
+            android:id="@+id/description"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:maxLines="3"
+            android:textColor="#555"
+            android:textSize="13sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/secondary"
+            tools:text="description description description description description description description description description description description description description description description description description description description description description description description description" />
+
 
         <androidx.cardview.widget.CardView
             android:id="@+id/ad_image_container"
             android:layout_width="match_parent"
             android:layout_height="160dp"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="24dp"
             android:layout_marginEnd="16dp"
             android:layout_marginBottom="16dp"
             android:visibility="gone"
@@ -99,7 +114,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/secondary"
+            app:layout_constraintTop_toBottomOf="@+id/description"
             tools:visibility="visible">
 
             <ImageView
