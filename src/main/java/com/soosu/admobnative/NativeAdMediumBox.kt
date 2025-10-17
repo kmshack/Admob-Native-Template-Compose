@@ -11,7 +11,6 @@ import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.viewinterop.AndroidViewBinding
 import com.google.android.gms.ads.nativead.NativeAd
 import com.soosu.admobnative.databinding.GntAdMediumTemplateViewBinding
-import com.soosu.admobnative.databinding.GntAdSmallTemplateViewBinding
 
 @SuppressLint("SetTextI18n")
 @Composable
@@ -37,11 +36,13 @@ fun NativeAdMediumBox(
                     adView.callToActionView = background
                     adView.headlineView = primary
                     adView.iconView = icon
+                    adView.bodyView = description
                 }
 
                 background.setBackgroundColor(bgColor)
                 secondary.setTextColor(txtColor)
                 primary.setTextColor(txtColor)
+                description.setTextColor(txtColor)
                 ad.setTextColor(txtColor)
 
 
@@ -51,14 +52,17 @@ fun NativeAdMediumBox(
                     secondary.text = " ⋅ ${nativeAd.store}"
                 }
 
-
                 nativeAd.headline?.let { headline ->
-                    this@AndroidViewBinding.primary.text = headline
+                    primary.text = headline
                 }
 
                 nativeAd.icon?.drawable?.let { drawable ->
                     icon.visibility = View.VISIBLE
                     icon.setImageDrawable(drawable)
+                }
+
+                nativeAd.body?.let { body ->
+                    description.text = body
                 }
 
                 nativeAd.images.firstOrNull()?.let { image ->
