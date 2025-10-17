@@ -109,7 +109,7 @@ LaunchedEffect(Unit) {
 
 
 2. **Medium Template** (`gnt_ad_medium_template_view.xml`)
-<img width="461" height="314" alt="스크린샷 2025-10-17 오후 5 48 45" src="https://github.com/user-attachments/assets/253bd29e-c487-46b4-99f2-241bef5a4751" />
+<img width="457" height="356" alt="스크린샷 2025-10-17 오후 6 21 21" src="https://github.com/user-attachments/assets/df541d69-5c7b-4f2d-b1b8-12d82052fb5d" />
 
    - 큰 이미지와 함께 헤드라인, 광고주 정보 표시
    - 더 많은 공간을 차지하는 레이아웃
