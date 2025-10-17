@@ -31,7 +31,7 @@ dependencies {
 ### 기본 사용 예제
 
 ```kotlin
-import com.soosu.admobnative.AdBox
+import com.soosu.admobnative.NativeAdSmallBox
 import androidx.compose.material3.MaterialTheme
 
 @Composable
