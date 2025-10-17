@@ -1,34 +1,34 @@
 # AdMob Native Compose
 
-Jetpack Compose용 AdMob Native Ad 컴포넌트 라이브러리입니다. Material 3 테마를 지원하며, 다양한 프로젝트에서 재사용할 수 있도록 분리되었습니다.
+A Jetpack Compose library for AdMob Native Ad components. It supports Material 3 theming and has been separated into a reusable library for various projects.
 
-## 기능
+## Features
 
-- ✅ Jetpack Compose 완벽 지원
-- ✅ Material 3 테마 통합
-- ✅ 배경색 및 텍스트 색상 커스터마이징
-- ✅ Small/Medium 템플릿 레이아웃 제공
-- ✅ ViewBinding 기반 구현
+- ✅ Full Jetpack Compose support
+- ✅ Material 3 theme integration
+- ✅ Customizable background and text colors
+- ✅ Small/Medium template layouts
+- ✅ ViewBinding-based implementation
 
-## 설치
+## Installation
 
-### 1. settings.gradle.kts에 모듈 추가
+### 1. Add module to settings.gradle.kts
 
 ```kotlin
 include(":admob-native-compose")
 ```
 
-### 2. app/build.gradle.kts에 의존성 추가
+### 2. Add dependency to app/build.gradle.kts
 
 ```kotlin
 dependencies {
-    implementation(project(":admob-native-compose"))
+   implementation(project(":admob-native-compose"))
 }
 ```
 
-## 사용법
+## Usage
 
-### 기본 사용 예제
+### Basic Usage Example
 
 ```kotlin
 import com.soosu.admobnative.NativeAdSmallBox
@@ -36,32 +36,32 @@ import androidx.compose.material3.MaterialTheme
 
 @Composable
 fun MyScreen() {
-    val nativeAd: NativeAd? = // ... AdMob Native Ad 로드
+   val nativeAd: NativeAd? = // ... Load AdMob Native Ad
 
-    Box(
-        modifier = Modifier
+      Box(
+         modifier = Modifier
             .fillMaxWidth()
             .wrapContentHeight()
             .clip(RoundedCornerShape(8.dp))
-    ) {
-           NativeAdSmallBox(
+      ) {
+         NativeAdSmallBox(
             nativeAd = nativeAd,
             modifier = Modifier.fillMaxWidth(),
             backgroundColor = MaterialTheme.colorScheme.surfaceVariant,
             textColor = MaterialTheme.colorScheme.onBackground
-        )
-    }
+         )
+      }
 }
 ```
 
-### NativeAdSmallBox 파라미터
+### NativeAdSmallBox Parameters
 
-- **nativeAd**: `NativeAd?` - AdMob Native Ad 객체
-- **modifier**: `Modifier` - Compose Modifier (기본값: `Modifier`)
-- **backgroundColor**: `Color` - 광고 배경색 (기본값: `MaterialTheme.colorScheme.surfaceVariant`)
-- **textColor**: `Color` - 텍스트 색상 (기본값: `MaterialTheme.colorScheme.onBackground`)
+- **nativeAd**: `NativeAd?` - AdMob Native Ad object
+- **modifier**: `Modifier` - Compose Modifier (default: `Modifier`)
+- **backgroundColor**: `Color` - Ad background color (default: `MaterialTheme.colorScheme.surfaceVariant`)
+- **textColor**: `Color` - Text color (default: `MaterialTheme.colorScheme.onBackground`)
 
-### Native Ad 로드 예제
+### Native Ad Loading Example
 
 ```kotlin
 import com.google.android.gms.ads.AdLoader
@@ -97,29 +97,29 @@ LaunchedEffect(Unit) {
 
 ```
 
-## 템플릿 레이아웃
+## Template Layouts
 
-라이브러리는 두 가지 템플릿을 제공합니다:
+The library provides two templates:
 
 1. **Small Template** (`gnt_ad_small_template_view.xml`)
-<img width="459" height="119" alt="스크린샷 2025-10-17 오후 6 22 45" src="https://github.com/user-attachments/assets/9e8aa35f-73f5-4a48-847b-907b7b426e5b" />
+   <img width="459" height="119" alt="스크린샷 2025-10-17 오후 6 22 45" src="https://github.com/user-attachments/assets/9e8aa35f-73f5-4a48-847b-907b7b426e5b" />
 
-   - 작은 이미지와 함께 헤드라인, 광고주 정보 표시
-   - 컴팩트한 레이아웃
+   - Displays headline and advertiser information with a small image
+   - Compact layout
 
 
 2. **Medium Template** (`gnt_ad_medium_template_view.xml`)
-<img width="457" height="356" alt="스크린샷 2025-10-17 오후 6 21 21" src="https://github.com/user-attachments/assets/df541d69-5c7b-4f2d-b1b8-12d82052fb5d" />
+   <img width="457" height="356" alt="스크린샷 2025-10-17 오후 6 21 21" src="https://github.com/user-attachments/assets/df541d69-5c7b-4f2d-b1b8-12d82052fb5d" />
 
-   - 큰 이미지와 함께 헤드라인, 광고주 정보 표시
-   - 더 많은 공간을 차지하는 레이아웃
+   - Displays headline and advertiser information with a large image
+   - Layout that takes up more space
 
 
-각 템플릿은 `NativeAdSmallBox` 및 `NativeAdMediumBox` 컴포저블에서 사용됩니다.
+Each template is used in the `NativeAdSmallBox` and `NativeAdMediumBox` composables.
 
-## 의존성
+## Dependencies
 
-이 라이브러리는 다음 의존성을 사용합니다:
+This library uses the following dependencies:
 
 - Jetpack Compose BOM
 - Material 3
@@ -127,10 +127,10 @@ LaunchedEffect(Unit) {
 - AndroidX ConstraintLayout
 - AndroidX CardView
 
-## 라이선스
+## License
 
-이 라이브러리는 원본 프로젝트 라이선스를 따릅니다.
+This library follows the original project license.
 
-## 기여
+## Contributing
 
-버그 리포트나 기능 제안은 이슈로 등록해주세요.
+Please submit bug reports or feature suggestions as issues.
