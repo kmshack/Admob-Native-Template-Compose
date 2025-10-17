@@ -43,7 +43,6 @@ fun MyScreen() {
             .fillMaxWidth()
             .wrapContentHeight()
             .clip(RoundedCornerShape(8.dp))
-            .background(color = MaterialTheme.colorScheme.surfaceVariant),
     ) {
            NativeAdSmallBox(
             nativeAd = nativeAd,
@@ -92,7 +91,6 @@ LaunchedEffect(Unit) {
         .fillMaxWidth()
         .wrapContentHeight()
         .clip(RoundedCornerShape(8.dp))
-        .background(color = MaterialTheme.colorScheme.surfaceVariant),
 ) {
     NativeAdSmallBox(nativeAd = nativeAd)
 }
