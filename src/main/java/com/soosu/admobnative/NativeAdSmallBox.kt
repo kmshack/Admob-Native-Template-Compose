@@ -10,7 +10,6 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.viewinterop.AndroidViewBinding
 import com.google.android.gms.ads.nativead.NativeAd
-import com.soosu.admobnative.databinding.GntAdMediumTemplateViewBinding
 import com.soosu.admobnative.databinding.GntAdSmallTemplateViewBinding
 
 @SuppressLint("SetTextI18n")
@@ -53,7 +52,7 @@ fun NativeAdSmallBox(
 
 
                 nativeAd.headline?.let { headline ->
-                    this@AndroidViewBinding.primary.text = headline
+                    primary.text = headline
                 }
 
                 nativeAd.icon?.drawable?.let { drawable ->
