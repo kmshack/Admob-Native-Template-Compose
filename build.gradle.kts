@@ -2,6 +2,7 @@ plugins {
     id("com.android.library")
     id("org.jetbrains.kotlin.android")
     id("org.jetbrains.kotlin.plugin.compose")
+    id("maven-publish")
 }
 
 android {
@@ -9,7 +10,7 @@ android {
     compileSdk = 36
 
     defaultConfig {
-        minSdk = 30
+        minSdk = 25
 
         consumerProguardFiles("consumer-rules.pro")
     }
@@ -54,4 +55,44 @@ dependencies {
     // ConstraintLayout and CardView for XML layouts
     implementation("androidx.constraintlayout:constraintlayout:2.2.1")
     implementation("androidx.cardview:cardview:1.0.0")
+}
+
+afterEvaluate {
+    publishing {
+        publications {
+            create<MavenPublication>("release") {
+                from(components["release"])
+
+                groupId = "com.github.kmshack"
+                artifactId = "admob-native-template-compose"
+                version = "1.0.0"
+
+                pom {
+                    name.set("Admob Native Template Compose")
+                    description.set("AdMob Native Ad templates for Jetpack Compose")
+                    url.set("https://github.com/kmshack/Admob-Native-Template-Compose")
+
+                    licenses {
+                        license {
+                            name.set("The Apache License, Version 2.0")
+                            url.set("http://www.apache.org/licenses/LICENSE-2.0.txt")
+                        }
+                    }
+
+                    developers {
+                        developer {
+                            id.set("kmshack")
+                            name.set("kmshack")
+                        }
+                    }
+
+                    scm {
+                        connection.set("scm:git:github.com/kmshack/Admob-Native-Template-Compose.git")
+                        developerConnection.set("scm:git:ssh://github.com/kmshack/Admob-Native-Template-Compose.git")
+                        url.set("https://github.com/kmshack/Admob-Native-Template-Compose")
+                    }
+                }
+            }
+        }
+    }
 }

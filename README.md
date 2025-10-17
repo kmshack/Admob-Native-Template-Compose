@@ -12,13 +12,41 @@ A Jetpack Compose library for AdMob Native Ad components. It supports Material 3
 
 ## Installation
 
-### 1. Add module to settings.gradle.kts
+[![](https://jitpack.io/v/kmshack/Admob-Native-Template-Compose.svg)](https://jitpack.io/#kmshack/Admob-Native-Template-Compose)
+
+### Add to your project
+
+**Step 1.** Add the JitPack repository to your `settings.gradle.kts`:
+
+```kotlin
+dependencyResolutionManagement {
+    repositories {
+        google()
+        mavenCentral()
+        maven { url = uri("https://jitpack.io") }
+    }
+}
+```
+
+**Step 2.** Add the dependency to your app's `build.gradle.kts`:
+
+```kotlin
+dependencies {
+    implementation("com.github.kmshack:Admob-Native-Template-Compose:1.0.0")
+}
+```
+
+### Alternative: Local Module Installation
+
+If you want to use it as a local module:
+
+**1.** Add module to `settings.gradle.kts`:
 
 ```kotlin
 include(":admob-native-compose")
 ```
 
-### 2. Add dependency to app/build.gradle.kts
+**2.** Add dependency to `app/build.gradle.kts`:
 
 ```kotlin
 dependencies {
