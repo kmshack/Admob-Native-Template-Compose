@@ -33,7 +33,7 @@ fun NativeAdMediumBox(
 
                 val adView = nativeAdView.also { adView ->
                     adView.adChoicesView = adChoice
-                    adView.callToActionView = cta
+                    adView.callToActionView = background
                     adView.headlineView = primary
                     adView.iconView = icon
                     adView.bodyView = description
@@ -44,7 +44,6 @@ fun NativeAdMediumBox(
                 primary.setTextColor(txtColor)
                 description.setTextColor(txtColor)
                 ad.setTextColor(txtColor)
-                bar.setTextColor(txtColor)
                 cta.setTextColor(txtColor)
 
 

@@ -305,7 +305,7 @@ fun AdSection(
             Box(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(16.dp),
+                    .padding(4.dp),
                 contentAlignment = Alignment.Center
             ) {
                 when {

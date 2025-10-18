@@ -33,7 +33,7 @@ fun NativeAdSmallBox(
 
                 val adView = nativeAdView.also { adView ->
                     adView.adChoicesView = adChoice
-                    adView.callToActionView = cta
+                    adView.callToActionView = background
                     adView.headlineView = primary
                     adView.iconView = icon
                 }
@@ -42,7 +42,6 @@ fun NativeAdSmallBox(
                 secondary.setTextColor(txtColor)
                 primary.setTextColor(txtColor)
                 ad.setTextColor(txtColor)
-                bar.setTextColor(txtColor)
                 cta.setTextColor(txtColor)
 
 
