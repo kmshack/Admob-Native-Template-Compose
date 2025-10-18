@@ -74,21 +74,69 @@
         <TextView
             android:id="@+id/secondary"
             android:layout_width="0dp"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_marginTop="6dp"
-            android:layout_marginBottom="20dp"
             android:includeFontPadding="false"
             android:maxLines="1"
             android:singleLine="true"
             android:textAlignment="viewStart"
             android:textColor="#555"
             android:textSize="13sp"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/bar"
             app:layout_constraintEnd_toEndOf="@+id/primary"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/ad"
             app:layout_constraintTop_toBottomOf="@+id/primary" />
 
+
+        <TextView
+            android:id="@+id/bar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="18dp"
+            android:layout_marginTop="6dp"
+            android:layout_marginEnd="4dp"
+            android:layout_marginBottom="20dp"
+            android:alpha="0.4"
+            android:includeFontPadding="false"
+            android:maxLines="1"
+            android:text="|"
+            android:textColor="#111"
+            android:textSize="13sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/cta"
+            app:layout_constraintHorizontal_bias="0"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/secondary" />
+
+        <TextView
+            android:id="@+id/cta"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:layout_marginEnd="4dp"
+            android:ellipsize="end"
+            android:includeFontPadding="false"
+            android:maxLines="1"
+            android:textColor="#111"
+            android:textSize="13sp"
+            app:layout_constraintBottom_toBottomOf="@+id/bar"
+            app:layout_constraintEnd_toStartOf="@+id/arrow"
+            app:layout_constraintStart_toEndOf="@+id/bar"
+            app:layout_constraintTop_toTopOf="@+id/bar"
+            tools:text="download" />
+
+        <ImageView
+            android:id="@+id/arrow"
+            android:layout_width="18dp"
+            android:layout_height="18dp"
+            android:layout_marginEnd="4dp"
+            android:src="@drawable/round_chevron_right_24"
+            app:layout_constraintBottom_toBottomOf="@+id/cta"
+            app:layout_constraintEnd_toStartOf="@+id/ad_image_container"
+            app:layout_constraintStart_toEndOf="@+id/cta"
+            app:layout_constraintTop_toTopOf="@+id/cta" />
 
         <androidx.cardview.widget.CardView
             android:id="@+id/ad_image_container"
