@@ -17,7 +17,7 @@
 
         <TextView
             android:id="@+id/primary"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
@@ -29,7 +29,6 @@
             android:maxWidth="200dp"
             android:textColor="#222"
             android:textSize="13sp"
-            app:layout_constrainedWidth="true"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/bar"
             app:layout_constraintHorizontal_bias="0"
