@@ -305,13 +305,45 @@ fun AdWithCleanup() {
 
 ## Sample App
 
-Check out the [sample app](./sample) (coming soon) for complete implementation examples including:
+A complete sample application is included in this repository demonstrating all three ad templates.
 
-- Multiple ad placements
-- LazyColumn integration
-- Custom styling examples
-- Error handling patterns
-- Test ad unit IDs
+### Running the Sample
+
+```bash
+# Clone the repository
+git clone https://github.com/kmshack/Admob-Native-Template-Compose.git
+cd Admob-Native-Template-Compose
+
+# Build and run the sample app
+./gradlew :sample:installDebug
+
+# Or open in Android Studio and run the 'sample' module
+```
+
+### What's Included
+
+The sample app demonstrates:
+
+- ✅ **All Three Templates** - Headline, Small, and Medium layouts
+- ✅ **Live Ad Loading** - Using Google's test ad unit IDs
+- ✅ **Loading States** - Progress indicators while ads load
+- ✅ **Error Handling** - Graceful error messages when ads fail
+- ✅ **Material 3 Theming** - Modern, beautiful UI design
+- ✅ **Lifecycle Management** - Proper ad cleanup on dispose
+- ✅ **Best Practices** - Production-ready implementation patterns
+
+### Screenshots
+
+The sample app displays all three template types in a scrollable list with detailed descriptions for each layout.
+
+### Test Ad Unit ID
+
+The sample uses Google's official test ad unit:
+```
+ca-app-pub-3940256099942544/2247696110
+```
+
+**Note:** This is a test ID and will not generate revenue. Replace with your own ad unit ID for production use.
 
 ---
 
