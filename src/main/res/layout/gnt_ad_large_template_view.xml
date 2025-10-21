@@ -39,20 +39,20 @@
         <!-- Icon Container -->
         <androidx.cardview.widget.CardView
             android:id="@+id/icon_container"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
             app:cardBackgroundColor="#fff"
-            app:cardCornerRadius="20dp"
+            app:cardCornerRadius="25dp"
             app:cardElevation="0dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/ad_image_container">
 
             <ImageView
                 android:id="@+id/icon"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
                 android:scaleType="centerCrop" />
 
         </androidx.cardview.widget.CardView>
@@ -82,7 +82,7 @@
             android:id="@+id/ad"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
+            android:layout_marginTop="2dp"
             android:background="@drawable/ad_badge_background"
             android:includeFontPadding="false"
             android:paddingStart="6dp"
@@ -119,12 +119,12 @@
             style="?android:attr/ratingBarStyleSmall"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="4dp"
             android:isIndicator="true"
             android:numStars="5"
             android:stepSize="0.5"
             android:visibility="gone"
-            app:layout_constraintStart_toStartOf="@+id/icon_container"
+            app:layout_constraintStart_toStartOf="@+id/ad"
             app:layout_constraintTop_toBottomOf="@+id/ad"
             tools:rating="4.5"
             tools:visibility="visible" />
