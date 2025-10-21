@@ -45,7 +45,7 @@
             android:layout_marginTop="16dp"
             app:cardBackgroundColor="#fff"
             app:cardCornerRadius="20dp"
-            app:cardElevation="2dp"
+            app:cardElevation="0dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/ad_image_container">
 
@@ -114,7 +114,7 @@
             tools:text="Sponsored by Brand Name" />
 
         <!-- Star Rating -->
-        <com.google.android.gms.ads.nativead.RatingBar
+        <RatingBar
             android:id="@+id/rating_bar"
             style="?android:attr/ratingBarStyleSmall"
             android:layout_width="wrap_content"
@@ -174,7 +174,7 @@
             android:layout_marginBottom="16dp"
             app:cardBackgroundColor="#1976D2"
             app:cardCornerRadius="8dp"
-            app:cardElevation="4dp"
+            app:cardElevation="0dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

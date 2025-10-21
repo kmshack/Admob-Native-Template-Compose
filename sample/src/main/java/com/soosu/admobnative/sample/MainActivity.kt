@@ -262,7 +262,7 @@ fun MainScreen() {
             // Large Template (CTR Optimized)
             item {
                 AdSection(
-                    title = "Large Template - CTR Optimized",
+                    title = "Large Template",
                     description = "Premium layout with large media, star rating, and prominent CTA button for maximum click-through rates",
                     isLoading = largeLoading,
                     error = largeError
