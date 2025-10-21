@@ -21,9 +21,10 @@ AdMob Native Template Compose provides ready-to-use, fully customizable native a
 
 - 🚀 **Zero Boilerplate** - Drop-in composables with sensible defaults
 - 🎨 **Material 3 Integration** - Automatically adapts to your app's theme
-- 📱 **Multiple Templates** - Small, Medium, and Headline layouts included
+- 📱 **Multiple Templates** - Small, Medium, Large (CTR Optimized), and Headline layouts included
 - ⚡ **Type-Safe** - Fully written in Kotlin with null safety
 - 🔧 **Highly Customizable** - Override colors, modifiers, and styling
+- 📈 **CTR Optimized** - Premium template designed for maximum click-through rates
 - 📦 **Lightweight** - Minimal dependencies, maximum performance
 
 ---
@@ -139,7 +140,7 @@ fun MyScreen() {
 
 ## Available Templates
 
-The library provides three pre-built templates optimized for different use cases:
+The library provides four pre-built templates optimized for different use cases:
 
 ### 1. Small Template - `NativeAdSmallBox`
 
@@ -196,6 +197,36 @@ NativeAdMediumBox(
 NativeAdHeadlineBox(
     nativeAd = nativeAd,
     modifier = Modifier.fillMaxWidth()
+)
+```
+
+### 4. Large Template - `NativeAdLargeBox` (CTR Optimized)
+
+**Best for:** Premium placements, maximum engagement, high CTR campaigns
+
+**Features:**
+- Large prominent media image (200dp height)
+- Star rating display (when available)
+- Price information display (when available)
+- Premium CTA button with full width design
+- Bold headline (2 lines)
+- Detailed body text (3 lines)
+- App icon and advertiser branding
+- Optimized for maximum click-through rates
+
+**Why This Template Boosts CTR:**
+- **Visual Impact**: Large media image immediately captures attention
+- **Trust Signals**: Star ratings and price information build credibility
+- **Clear Action**: Prominent, full-width CTA button drives clicks
+- **Information Hierarchy**: Well-structured layout guides users to action
+- **Premium Feel**: Professional design increases perceived value
+
+```kotlin
+NativeAdLargeBox(
+    nativeAd = nativeAd,
+    modifier = Modifier.fillMaxWidth(),
+    ctaButtonColor = Color(0xFF1976D2), // Customize CTA button color
+    ctaTextColor = Color.White
 )
 ```
 
@@ -324,17 +355,18 @@ cd Admob-Native-Template-Compose
 
 The sample app demonstrates:
 
-- ✅ **All Three Templates** - Headline, Small, and Medium layouts
+- ✅ **All Four Templates** - Headline, Small, Medium, and Large (CTR Optimized) layouts
 - ✅ **Live Ad Loading** - Using Google's test ad unit IDs
 - ✅ **Loading States** - Progress indicators while ads load
 - ✅ **Error Handling** - Graceful error messages when ads fail
 - ✅ **Material 3 Theming** - Modern, beautiful UI design
 - ✅ **Lifecycle Management** - Proper ad cleanup on dispose
 - ✅ **Best Practices** - Production-ready implementation patterns
+- ✅ **CTR Optimization** - Premium template showcasing high-engagement design
 
 ### Screenshots
 
-The sample app displays all three template types in a scrollable list with detailed descriptions for each layout.
+The sample app displays all four template types in a scrollable list with detailed descriptions for each layout.
 
 ### Test Ad Unit ID
 
