@@ -22,6 +22,7 @@ import com.google.android.gms.ads.MobileAds
 import com.google.android.gms.ads.nativead.NativeAd
 import com.google.android.gms.ads.nativead.NativeAdOptions
 import com.soosu.admobnative.NativeAdHeadlineBox
+import com.soosu.admobnative.NativeAdLargeBox
 import com.soosu.admobnative.NativeAdMediumBox
 import com.soosu.admobnative.NativeAdSmallBox
 
@@ -66,14 +67,17 @@ fun MainScreen() {
     var headlineAd by remember { mutableStateOf<NativeAd?>(null) }
     var smallAd by remember { mutableStateOf<NativeAd?>(null) }
     var mediumAd by remember { mutableStateOf<NativeAd?>(null) }
+    var largeAd by remember { mutableStateOf<NativeAd?>(null) }
 
     var headlineLoading by remember { mutableStateOf(true) }
     var smallLoading by remember { mutableStateOf(true) }
     var mediumLoading by remember { mutableStateOf(true) }
+    var largeLoading by remember { mutableStateOf(true) }
 
     var headlineError by remember { mutableStateOf<String?>(null) }
     var smallError by remember { mutableStateOf<String?>(null) }
     var mediumError by remember { mutableStateOf<String?>(null) }
+    var largeError by remember { mutableStateOf<String?>(null) }
 
     // Test ad unit ID for native ads
     val testAdUnitId = "ca-app-pub-3940256099942544/2247696110"
@@ -147,12 +151,36 @@ fun MainScreen() {
         adLoader.loadAd(AdRequest.Builder().build())
     }
 
+    // Load large ad
+    LaunchedEffect(Unit) {
+        val adLoader = AdLoader.Builder(context, testAdUnitId)
+            .forNativeAd { ad ->
+                largeAd = ad
+                largeLoading = false
+            }
+            .withAdListener(object : AdListener() {
+                override fun onAdFailedToLoad(error: LoadAdError) {
+                    largeLoading = false
+                    largeError = error.message
+                }
+            })
+            .withNativeAdOptions(
+                NativeAdOptions.Builder()
+                    .setAdChoicesPlacement(NativeAdOptions.ADCHOICES_TOP_RIGHT)
+                    .build()
+            )
+            .build()
+
+        adLoader.loadAd(AdRequest.Builder().build())
+    }
+
     // Clean up ads when leaving composition
     DisposableEffect(Unit) {
         onDispose {
             headlineAd?.destroy()
             smallAd?.destroy()
             mediumAd?.destroy()
+            largeAd?.destroy()
         }
     }
 
@@ -227,6 +255,23 @@ fun MainScreen() {
                         modifier = Modifier
                             .fillMaxWidth()
                             .clip(RoundedCornerShape(16.dp))
+                    )
+                }
+            }
+
+            // Large Template (CTR Optimized)
+            item {
+                AdSection(
+                    title = "Large Template - CTR Optimized",
+                    description = "Premium layout with large media, star rating, and prominent CTA button for maximum click-through rates",
+                    isLoading = largeLoading,
+                    error = largeError
+                ) {
+                    NativeAdLargeBox(
+                        nativeAd = largeAd,
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .clip(RoundedCornerShape(12.dp))
                     )
                 }
             }
