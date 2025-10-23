@@ -10,7 +10,7 @@ android {
     compileSdk = 36
 
     defaultConfig {
-        minSdk = 25
+        minSdk = 23
 
         consumerProguardFiles("consumer-rules.pro")
     }
@@ -65,7 +65,7 @@ afterEvaluate {
 
                 groupId = "com.github.kmshack"
                 artifactId = "admob-native-template-compose"
-                version = "1.0.7"
+                version = "1.0.8"
 
                 pom {
                     name.set("Admob Native Template Compose")
