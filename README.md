@@ -200,7 +200,9 @@ NativeAdHeadlineBox(
 )
 ```
 
-### 4. Large Template - `NativeAdLargeBox` (CTR Optimized)
+### 4. Large Template - `NativeAdLargeBox` 
+
+<img width="536" height="576" alt="스크린샷 2025-10-23 오후 10 08 32" src="https://github.com/user-attachments/assets/8096cb92-d8f7-4a30-a542-dc99737bff71" />
 
 **Best for:** Premium placements, maximum engagement, high CTR campaigns
 
