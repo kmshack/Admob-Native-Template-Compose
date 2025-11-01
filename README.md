@@ -72,6 +72,7 @@ dependencyResolutionManagement {
 }
 ```
 
+
 **Step 2:** Add the dependency to your app module's `build.gradle.kts`:
 
 ```kotlin
@@ -184,7 +185,7 @@ NativeAdMediumBox(
 
 ### 3. Headline Template - `NativeAdHeadlineBox`
 
-<img width="1071" height="150" alt="스크린샷 2025-10-18 오후 7 28 03" src="https://github.com/user-attachments/assets/b525bfd3-bade-4081-80ad-b98bcbb02e10" />
+<img width="524" height="75" alt="스크린샷 2025-11-01 오후 12 28 36" src="https://github.com/user-attachments/assets/fd962500-91ec-4329-a731-a7a4b2041573" />
 
 **Best for:** Minimal spaces, headers, banners
 
@@ -203,7 +204,7 @@ NativeAdHeadlineBox(
 
 ### 4. Large Template - `NativeAdLargeBox` 
 
-<img width="536" height="576" alt="스크린샷 2025-10-23 오후 10 08 32" src="https://github.com/user-attachments/assets/8096cb92-d8f7-4a30-a542-dc99737bff71" />
+<img width="532" height="561" alt="스크린샷 2025-11-01 오후 12 29 10" src="https://github.com/user-attachments/assets/b7f3c5f2-bc02-468a-96a5-e135bbdf46b7" />
 
 **Best for:** Premium placements, maximum engagement, high CTR campaigns
 
