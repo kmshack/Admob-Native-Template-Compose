@@ -145,7 +145,7 @@ The library provides four pre-built templates optimized for different use cases:
 
 ### 1. Small Template - `NativeAdSmallBox`
 
-<img width="1074" height="337" alt="스크린샷 2025-10-18 오후 7 28 22" src="https://github.com/user-attachments/assets/175b4d88-ad8c-4aaa-a168-6f934391d287" />
+<img width="625" height="354" alt="스크린샷 2025-11-01 오후 12 26 31" src="https://github.com/user-attachments/assets/4873d905-9b0f-4680-953c-fb72a8165e1d" />
 
 **Best for:** List items, compact spaces, inline content
 
@@ -164,7 +164,7 @@ NativeAdSmallBox(
 
 ### 2. Medium Template - `NativeAdMediumBox`
 
-<img width="1069" height="872" alt="스크린샷 2025-10-18 오후 7 28 44" src="https://github.com/user-attachments/assets/bc9cefd2-1460-42f0-9dec-209a40881749" />
+<img width="625" height="557" alt="스크린샷 2025-11-01 오후 12 26 59" src="https://github.com/user-attachments/assets/48c3c8ed-ece4-4e5b-8ed6-8bf2c571d21f" />
 
 **Best for:** Cards, featured content, feed items
 
