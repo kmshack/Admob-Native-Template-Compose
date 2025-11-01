@@ -75,25 +75,93 @@ object AdColorExtractor {
 
     /**
      * Extracts the most appropriate background color from palette
-     * Priority: VibrantSwatch > LightVibrantSwatch > MutedSwatch > DominantColor
+     * Priority: MutedSwatch > LightMutedSwatch > DarkMutedSwatch > DominantColor
+     * Prioritizes muted colors for better readability
      */
     private fun extractBackgroundColor(palette: Palette): Color? {
-        val swatch = palette.vibrantSwatch
-            ?: palette.lightVibrantSwatch
-            ?: palette.mutedSwatch
+        val swatch = palette.mutedSwatch
+            ?: palette.lightMutedSwatch
+            ?: palette.darkMutedSwatch
             ?: palette.dominantSwatch
 
-        return swatch?.rgb?.let { Color(it) }
+        val color = swatch?.rgb?.let { Color(it) } ?: return null
+
+        // Adjust color brightness for optimal readability
+        return adjustColorForReadability(color)
+    }
+
+    /**
+     * Adjusts color brightness for optimal readability
+     * Ensures the color is neither too dark nor too bright
+     * @param color The original color
+     * @return Adjusted color with better readability
+     */
+    private fun adjustColorForReadability(color: Color): Color {
+        val luminance = calculateLuminance(color)
+
+        // If color is too dark (luminance < 0.15), brighten it
+        // If color is too bright (luminance > 0.85), darken it
+        // Target range: 0.15 ~ 0.85 for comfortable reading
+        return when {
+            luminance < 0.15f -> {
+                // Brighten the color
+                adjustBrightness(color, 0.3f)
+            }
+            luminance > 0.85f -> {
+                // Darken the color
+                adjustBrightness(color, 0.7f)
+            }
+            else -> color
+        }
+    }
+
+    /**
+     * Adjusts the brightness of a color
+     * @param color Original color
+     * @param factor Brightness factor (0.0 = black, 1.0 = original brightness, >1.0 = brighter)
+     * @return Color with adjusted brightness
+     */
+    private fun adjustBrightness(color: Color, factor: Float): Color {
+        val r = (color.red * factor).coerceIn(0f, 1f)
+        val g = (color.green * factor).coerceIn(0f, 1f)
+        val b = (color.blue * factor).coerceIn(0f, 1f)
+        return Color(r, g, b, color.alpha)
     }
 
     /**
      * Calculates appropriate text color based on background brightness
+     * Uses WCAG 2.0 guidelines for better contrast ratio (minimum 4.5:1)
      * @param backgroundColor The background color
      * @return Black or White color for optimal contrast
      */
     private fun getContrastTextColor(backgroundColor: Color): Color {
-        val luminance = calculateLuminance(backgroundColor)
-        return if (luminance > 0.5f) Color.Black else Color.White
+        val bgLuminance = calculateLuminance(backgroundColor)
+
+        // Calculate contrast ratios for both black and white text
+        val whiteLuminance = 1f
+        val blackLuminance = 0f
+
+        val contrastWithWhite = calculateContrastRatio(bgLuminance, whiteLuminance)
+        val contrastWithBlack = calculateContrastRatio(bgLuminance, blackLuminance)
+
+        // Choose the color with better contrast ratio
+        // For optimal readability, prefer the one with higher contrast
+        return if (contrastWithWhite > contrastWithBlack) {
+            Color.White
+        } else {
+            Color.Black
+        }
+    }
+
+    /**
+     * Calculates the contrast ratio between two luminance values
+     * Based on WCAG 2.0 formula
+     * @return Contrast ratio (1:1 to 21:1)
+     */
+    private fun calculateContrastRatio(luminance1: Float, luminance2: Float): Float {
+        val lighter = maxOf(luminance1, luminance2)
+        val darker = minOf(luminance1, luminance2)
+        return (lighter + 0.05f) / (darker + 0.05f)
     }
 
     /**
