@@ -45,6 +45,7 @@ fun NativeAdMediumBox(
                 description.setTextColor(txtColor)
                 ad.setTextColor(txtColor)
                 cta.setTextColor(txtColor)
+                arrow.setColorFilter(txtColor)
 
 
                 if (!nativeAd.advertiser.isNullOrEmpty()) {

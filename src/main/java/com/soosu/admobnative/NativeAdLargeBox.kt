@@ -52,6 +52,7 @@ fun NativeAdLargeBox(
                 ad.setTextColor(txtColor)
                 cta.setTextColor(ctaTxtColor)
                 ctaContainer.setCardBackgroundColor(ctaBgColor)
+                ctaArrow.setColorFilter(txtColor)
 
                 // Set advertiser or store
                 if (!nativeAd.advertiser.isNullOrEmpty()) {
