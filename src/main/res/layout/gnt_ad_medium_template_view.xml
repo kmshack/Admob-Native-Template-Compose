@@ -59,7 +59,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="4dp"
-            android:layout_marginTop="6dp"
+            android:layout_marginTop="3dp"
+            android:alpha="0.8"
             android:gravity="center_vertical"
             android:text="AD"
             android:textColor="#555"
@@ -72,6 +73,7 @@
             android:id="@+id/secondary"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:alpha="0.8"
             android:gravity="center_vertical"
             android:maxLines="1"
             android:singleLine="true"
@@ -88,7 +90,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="12dp"
             android:layout_marginEnd="16dp"
             android:maxLines="3"
             android:textColor="#555"
@@ -117,12 +119,24 @@
             app:layout_constraintTop_toBottomOf="@+id/description"
             tools:visibility="visible">
 
-            <ImageView
-                android:id="@+id/ad_image"
+            <FrameLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:adjustViewBounds="true"
-                android:scaleType="centerCrop" />
+                android:layout_height="match_parent">
+
+                <com.google.android.gms.ads.nativead.MediaView
+                    android:id="@+id/ad_media"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+
+                <ImageView
+                    android:id="@+id/ad_image"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:adjustViewBounds="true"
+                    android:scaleType="fitCenter"
+                    android:visibility="gone" />
+
+            </FrameLayout>
 
         </androidx.cardview.widget.CardView>
 
@@ -131,7 +145,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="4dp"
             android:layout_marginEnd="4dp"
             android:ellipsize="end"
             android:includeFontPadding="false"

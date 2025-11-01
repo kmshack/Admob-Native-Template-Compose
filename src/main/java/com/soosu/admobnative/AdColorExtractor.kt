@@ -135,18 +135,20 @@ object AdColorExtractor {
      * @return Black or White color for optimal contrast
      */
     private fun getContrastTextColor(backgroundColor: Color): Color {
+        val saturation = calculateSaturation(backgroundColor)
+
+        // For highly saturated colors (vibrant colors like red, blue, etc.),
+        // white text provides better readability
+        if (saturation > 0.5f) {
+            return Color.White
+        }
+
         val bgLuminance = calculateLuminance(backgroundColor)
 
-        // Calculate contrast ratios for both black and white text
-        val whiteLuminance = 1f
-        val blackLuminance = 0f
-
-        val contrastWithWhite = calculateContrastRatio(bgLuminance, whiteLuminance)
-        val contrastWithBlack = calculateContrastRatio(bgLuminance, blackLuminance)
-
-        // Choose the color with better contrast ratio
-        // For optimal readability, prefer the one with higher contrast
-        return if (contrastWithWhite > contrastWithBlack) {
+        // For dark to medium backgrounds (luminance < 0.65), use white text
+        // For bright backgrounds (luminance >= 0.65), use black text
+        // This threshold is adjusted higher to prefer white text on medium-toned backgrounds
+        return if (bgLuminance < 0.65f) {
             Color.White
         } else {
             Color.Black
@@ -180,6 +182,26 @@ object AdColorExtractor {
 
         // Calculate luminance
         return 0.2126f * rLinear + 0.7152f * gLinear + 0.0722f * bLinear
+    }
+
+    /**
+     * Calculates the saturation of a color using HSV color model
+     * @param color The color to calculate saturation for
+     * @return Saturation value (0.0 = grayscale, 1.0 = fully saturated)
+     */
+    private fun calculateSaturation(color: Color): Float {
+        val r = color.red
+        val g = color.green
+        val b = color.blue
+
+        val max = maxOf(r, g, b)
+        val min = minOf(r, g, b)
+
+        // If max is 0, saturation is 0 (black)
+        if (max == 0f) return 0f
+
+        // Calculate saturation using HSV formula
+        return (max - min) / max
     }
 
     private fun Float.pow(exponent: Float): Float {

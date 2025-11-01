@@ -27,12 +27,24 @@
             app:layout_constraintTop_toTopOf="parent"
             tools:visibility="visible">
 
-            <ImageView
-                android:id="@+id/ad_image"
+            <FrameLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:adjustViewBounds="true"
-                android:scaleType="centerCrop" />
+                android:layout_height="match_parent">
+
+                <com.google.android.gms.ads.nativead.MediaView
+                    android:id="@+id/ad_media"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+
+                <ImageView
+                    android:id="@+id/ad_image"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:adjustViewBounds="true"
+                    android:scaleType="fitCenter"
+                    android:visibility="gone" />
+
+            </FrameLayout>
 
         </androidx.cardview.widget.CardView>
 
@@ -83,11 +95,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="2dp"
-            android:background="@drawable/ad_badge_background"
             android:includeFontPadding="false"
-            android:paddingStart="6dp"
             android:paddingTop="2dp"
-            android:paddingEnd="6dp"
+            android:alpha="0.8"
             android:paddingBottom="2dp"
             android:text="AD"
             android:textColor="#555"
@@ -100,8 +110,8 @@
             android:id="@+id/secondary"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="6dp"
             android:layout_marginEnd="16dp"
+            android:alpha="0.8"
             android:ellipsize="end"
             android:maxLines="1"
             android:singleLine="true"
@@ -136,7 +146,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="12dp"
             android:textColor="#2E7D32"
-            android:textSize="16sp"
+            android:textSize="12sp"
             android:textStyle="bold"
             android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="@+id/rating_bar"
@@ -151,7 +161,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="12dp"
+            android:layout_marginTop="18dp"
             android:layout_marginEnd="16dp"
             android:ellipsize="end"
             android:lineSpacingMultiplier="1.2"

@@ -37,6 +37,7 @@ fun NativeAdMediumBox(
                     adView.headlineView = primary
                     adView.iconView = icon
                     adView.bodyView = description
+                    adView.mediaView = adMedia
                 }
 
                 background.setBackgroundColor(bgColor)
@@ -71,9 +72,19 @@ fun NativeAdMediumBox(
                     description.text = body
                 }
 
-                nativeAd.images.firstOrNull()?.let { image ->
-                    adImage.setImageDrawable(image.drawable)
+                // Set media content (video or image)
+                nativeAd.mediaContent?.let { mediaContent ->
+                    adMedia.setMediaContent(mediaContent)
+                    adMedia.visibility = View.VISIBLE
                     adImageContainer.visibility = View.VISIBLE
+                } ?: run {
+                    // Fallback to static image if no media content
+                    nativeAd.images.firstOrNull()?.let { image ->
+                        adMedia.visibility = View.GONE
+                        adImage.visibility = View.VISIBLE
+                        adImage.setImageDrawable(image.drawable)
+                        adImageContainer.visibility = View.VISIBLE
+                    }
                 }
 
                 adView.setNativeAd(nativeAd)

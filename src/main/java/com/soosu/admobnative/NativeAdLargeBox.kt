@@ -43,6 +43,7 @@ fun NativeAdLargeBox(
                     adView.bodyView = description
                     adView.starRatingView = ratingBar
                     adView.priceView = price
+                    adView.mediaView = adMedia
                 }
 
                 background.setBackgroundColor(bgColor)
@@ -52,13 +53,13 @@ fun NativeAdLargeBox(
                 ad.setTextColor(txtColor)
                 cta.setTextColor(ctaTxtColor)
                 ctaContainer.setCardBackgroundColor(ctaBgColor)
-                ctaArrow.setColorFilter(txtColor)
+                ctaArrow.setColorFilter(ctaTxtColor)
 
                 // Set advertiser or store
                 if (!nativeAd.advertiser.isNullOrEmpty()) {
-                    secondary.text = "Sponsored by ${nativeAd.advertiser}"
+                    secondary.text = " ⋅ ${nativeAd.advertiser}"
                 } else if (!nativeAd.store.isNullOrEmpty()) {
-                    secondary.text = "Available at ${nativeAd.store}"
+                    secondary.text = " ⋅ ${nativeAd.store}"
                 }
 
                 // Set headline
@@ -83,10 +84,19 @@ fun NativeAdLargeBox(
                     description.visibility = View.VISIBLE
                 }
 
-                // Set media image
-                nativeAd.images.firstOrNull()?.let { image ->
-                    adImage.setImageDrawable(image.drawable)
+                // Set media content (video or image)
+                nativeAd.mediaContent?.let { mediaContent ->
+                    adMedia.setMediaContent(mediaContent)
+                    adMedia.visibility = View.VISIBLE
                     adImageContainer.visibility = View.VISIBLE
+                } ?: run {
+                    // Fallback to static image if no media content
+                    nativeAd.images.firstOrNull()?.let { image ->
+                        adMedia.visibility = View.GONE
+                        adImage.visibility = View.VISIBLE
+                        adImage.setImageDrawable(image.drawable)
+                        adImageContainer.visibility = View.VISIBLE
+                    }
                 }
 
                 // Set star rating
