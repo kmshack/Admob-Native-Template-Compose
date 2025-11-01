@@ -21,6 +21,7 @@ AdMob Native Template Compose provides ready-to-use, fully customizable native a
 
 - 🚀 **Zero Boilerplate** - Drop-in composables with sensible defaults
 - 🎨 **Material 3 Integration** - Automatically adapts to your app's theme
+- 🌈 **Auto Color Extraction** - Intelligent color extraction from ad images for seamless integration
 - 📱 **Multiple Templates** - Small, Medium, Large (CTR Optimized), and Headline layouts included
 - ⚡ **Type-Safe** - Fully written in Kotlin with null safety
 - 🔧 **Highly Customizable** - Override colors, modifiers, and styling
@@ -75,7 +76,7 @@ dependencyResolutionManagement {
 
 ```kotlin
 dependencies {
-    implementation("com.github.kmshack:Admob-Native-Template-Compose:1.0.8")
+    implementation("com.github.kmshack:Admob-Native-Template-Compose:1.0.9")
 }
 ```
 
@@ -334,6 +335,66 @@ fun AdWithCleanup() {
 }
 ```
 
+### Auto Color Extraction
+
+The library provides `NativeAdAutoColorWrapper` that automatically extracts dominant colors from ad images and applies them to the ad template. This creates a more cohesive, visually appealing ad experience.
+
+**Features:**
+- 🎨 Automatically extracts background color from ad images using Palette API
+- 🔤 Calculates optimal text color (black/white) based on background brightness
+- ⚡ Asynchronous color extraction on background thread
+- 🔄 Works with all ad templates (Small, Medium, Large)
+- 💡 Falls back to theme colors if extraction fails
+
+**How it works:**
+- Analyzes the ad's media image using the Palette library
+- Extracts vibrant, muted, or dominant colors in priority order
+- Calculates text color contrast using WCAG 2.0 luminance formula
+- Provides nullable colors to the content composable
+
+```kotlin
+NativeAdAutoColorWrapper(
+    nativeAd = nativeAd
+) { backgroundColor, textColor ->
+    NativeAdSmallBox(
+        nativeAd = nativeAd,
+        backgroundColor = backgroundColor ?: MaterialTheme.colorScheme.surfaceVariant,
+        textColor = textColor ?: MaterialTheme.colorScheme.onBackground,
+        modifier = Modifier
+            .fillMaxWidth()
+            .clip(RoundedCornerShape(12.dp))
+    )
+}
+```
+
+**Works with all templates:**
+
+```kotlin
+// Medium Template with auto colors
+NativeAdAutoColorWrapper(nativeAd = nativeAd) { bgColor, txtColor ->
+    NativeAdMediumBox(
+        nativeAd = nativeAd,
+        backgroundColor = bgColor ?: MaterialTheme.colorScheme.surfaceVariant,
+        textColor = txtColor ?: MaterialTheme.colorScheme.onBackground
+    )
+}
+
+// Large Template with auto colors
+NativeAdAutoColorWrapper(nativeAd = nativeAd) { bgColor, txtColor ->
+    NativeAdLargeBox(
+        nativeAd = nativeAd,
+        backgroundColor = bgColor ?: MaterialTheme.colorScheme.surfaceVariant,
+        textColor = txtColor ?: MaterialTheme.colorScheme.onBackground
+    )
+}
+```
+
+**Why use Auto Color Extraction?**
+- Creates a unified visual experience between ad content and your app
+- Improves ad integration and reduces visual disruption
+- Automatically adapts to different ad creatives
+- Increases user engagement with better-looking ads
+
 ---
 
 ## Sample App
@@ -358,6 +419,7 @@ cd Admob-Native-Template-Compose
 The sample app demonstrates:
 
 - ✅ **All Four Templates** - Headline, Small, Medium, and Large (CTR Optimized) layouts
+- ✅ **Auto Color Extraction** - Live demonstration of automatic color extraction from ad images
 - ✅ **Live Ad Loading** - Using Google's test ad unit IDs
 - ✅ **Loading States** - Progress indicators while ads load
 - ✅ **Error Handling** - Graceful error messages when ads fail
@@ -389,7 +451,8 @@ This library uses the following dependencies:
 |------------|---------|---------|
 | Jetpack Compose BOM | 2025.06.00 | Compose runtime and UI |
 | Material 3 | 1.3.2+ | Material Design components |
-| Google Play Services Ads | 24.4.0 | AdMob SDK |
+| Google Play Services Ads | 24.7.0 | AdMob SDK |
+| Palette KTX | 1.0.0 | Auto color extraction from images |
 | AndroidX Core KTX | 1.16.0 | Core Android utilities |
 | ConstraintLayout | 2.2.1 | Layout for XML templates |
 | CardView | 1.0.0 | Card components |

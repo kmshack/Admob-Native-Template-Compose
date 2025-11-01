@@ -3,14 +3,39 @@ package com.soosu.admobnative.sample
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.*
-import androidx.compose.runtime.*
+import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.CircularProgressIndicator
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Surface
+import androidx.compose.material3.Text
+import androidx.compose.material3.TopAppBar
+import androidx.compose.material3.TopAppBarDefaults
+import androidx.compose.material3.lightColorScheme
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.DisposableEffect
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
@@ -21,6 +46,7 @@ import com.google.android.gms.ads.LoadAdError
 import com.google.android.gms.ads.MobileAds
 import com.google.android.gms.ads.nativead.NativeAd
 import com.google.android.gms.ads.nativead.NativeAdOptions
+import com.soosu.admobnative.NativeAdAutoColorWrapper
 import com.soosu.admobnative.NativeAdHeadlineBox
 import com.soosu.admobnative.NativeAdLargeBox
 import com.soosu.admobnative.NativeAdMediumBox
@@ -216,11 +242,7 @@ fun MainScreen() {
                     error = headlineError
                 ) {
                     NativeAdHeadlineBox(
-                        nativeAd = headlineAd,
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .clip(RoundedCornerShape(8.dp)),
-                        backgroundColor = MaterialTheme.colorScheme.surfaceVariant
+                        nativeAd = headlineAd
                     )
                 }
             }
@@ -233,12 +255,40 @@ fun MainScreen() {
                     isLoading = smallLoading,
                     error = smallError
                 ) {
-                    NativeAdSmallBox(
-                        nativeAd = smallAd,
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .clip(RoundedCornerShape(12.dp))
-                    )
+
+                    Column {
+
+                        NativeAdSmallBox(
+                            nativeAd = smallAd,
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .clip(RoundedCornerShape(12.dp))
+                        )
+
+                        Spacer(modifier = Modifier.height(16.dp))
+
+                        NativeAdAutoColorWrapper(
+                            nativeAd = headlineAd,
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .padding(top = 8.dp)
+                                .clip(
+                                    RoundedCornerShape(8.dp)
+                                )
+                        ) { backgroundColor: Color?, textColor: Color? ->
+                            NativeAdSmallBox(
+                                nativeAd = smallAd,
+                                backgroundColor = backgroundColor
+                                    ?: MaterialTheme.colorScheme.surfaceVariant,
+                                textColor = textColor ?: MaterialTheme.colorScheme.onBackground,
+                                modifier = Modifier
+                                    .fillMaxWidth()
+                                    .clip(RoundedCornerShape(12.dp))
+                            )
+
+                        }
+                    }
+
                 }
             }
 
@@ -250,12 +300,34 @@ fun MainScreen() {
                     isLoading = mediumLoading,
                     error = mediumError
                 ) {
-                    NativeAdMediumBox(
-                        nativeAd = mediumAd,
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .clip(RoundedCornerShape(16.dp))
-                    )
+                    Column {
+                        NativeAdMediumBox(
+                            nativeAd = mediumAd,
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .clip(RoundedCornerShape(16.dp))
+                        )
+
+                        Spacer(modifier = Modifier.height(16.dp))
+
+                        NativeAdAutoColorWrapper(
+                            nativeAd = mediumAd,
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .padding(top = 8.dp)
+                                .clip(RoundedCornerShape(16.dp))
+                        ) { backgroundColor, textColor ->
+                            NativeAdMediumBox(
+                                nativeAd = mediumAd,
+                                backgroundColor = backgroundColor
+                                    ?: MaterialTheme.colorScheme.surfaceVariant,
+                                textColor = textColor ?: MaterialTheme.colorScheme.onBackground,
+                                modifier = Modifier
+                                    .fillMaxWidth()
+                                    .clip(RoundedCornerShape(16.dp))
+                            )
+                        }
+                    }
                 }
             }
 
@@ -267,12 +339,34 @@ fun MainScreen() {
                     isLoading = largeLoading,
                     error = largeError
                 ) {
-                    NativeAdLargeBox(
-                        nativeAd = largeAd,
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .clip(RoundedCornerShape(12.dp))
-                    )
+                    Column {
+                        NativeAdLargeBox(
+                            nativeAd = largeAd,
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .clip(RoundedCornerShape(12.dp))
+                        )
+
+                        Spacer(modifier = Modifier.height(16.dp))
+
+                        NativeAdAutoColorWrapper(
+                            nativeAd = largeAd,
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .padding(top = 8.dp)
+                                .clip(RoundedCornerShape(12.dp))
+                        ) { backgroundColor, textColor ->
+                            NativeAdLargeBox(
+                                nativeAd = largeAd,
+                                backgroundColor = backgroundColor
+                                    ?: MaterialTheme.colorScheme.surfaceVariant,
+                                textColor = textColor ?: MaterialTheme.colorScheme.onBackground,
+                                modifier = Modifier
+                                    .fillMaxWidth()
+                                    .clip(RoundedCornerShape(12.dp))
+                            )
+                        }
+                    }
                 }
             }
 
@@ -296,7 +390,7 @@ fun MainScreen() {
                         )
                         Text(
                             "This sample app uses Google's test ad unit IDs. " +
-                            "These ads are safe for testing and won't generate revenue.",
+                                    "These ads are safe for testing and won't generate revenue.",
                             style = MaterialTheme.typography.bodyMedium,
                             color = MaterialTheme.colorScheme.onSecondaryContainer
                         )
@@ -343,42 +437,41 @@ fun AdSection(
             color = MaterialTheme.colorScheme.onSurfaceVariant
         )
 
-        Card(
-            modifier = Modifier.fillMaxWidth(),
-            elevation = CardDefaults.cardElevation(defaultElevation = 2.dp)
+
+        Box(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(4.dp),
+            contentAlignment = Alignment.Center
         ) {
-            Box(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(4.dp),
-                contentAlignment = Alignment.Center
-            ) {
-                when {
-                    isLoading -> {
-                        CircularProgressIndicator()
+            when {
+                isLoading -> {
+                    CircularProgressIndicator()
+                }
+
+                error != null -> {
+                    Column(
+                        horizontalAlignment = Alignment.CenterHorizontally,
+                        verticalArrangement = Arrangement.spacedBy(8.dp)
+                    ) {
+                        Text(
+                            "⚠️ Failed to load ad",
+                            style = MaterialTheme.typography.bodyMedium,
+                            color = MaterialTheme.colorScheme.error
+                        )
+                        Text(
+                            error,
+                            style = MaterialTheme.typography.bodySmall,
+                            color = MaterialTheme.colorScheme.onSurfaceVariant
+                        )
                     }
-                    error != null -> {
-                        Column(
-                            horizontalAlignment = Alignment.CenterHorizontally,
-                            verticalArrangement = Arrangement.spacedBy(8.dp)
-                        ) {
-                            Text(
-                                "⚠️ Failed to load ad",
-                                style = MaterialTheme.typography.bodyMedium,
-                                color = MaterialTheme.colorScheme.error
-                            )
-                            Text(
-                                error,
-                                style = MaterialTheme.typography.bodySmall,
-                                color = MaterialTheme.colorScheme.onSurfaceVariant
-                            )
-                        }
-                    }
-                    else -> {
-                        content()
-                    }
+                }
+
+                else -> {
+                    content()
                 }
             }
         }
+
     }
 }

@@ -47,7 +47,10 @@ dependencies {
     implementation("androidx.compose.ui:ui-viewbinding")
 
     // Google Play Services Ads
-    implementation("com.google.android.gms:play-services-ads:24.4.0")
+    implementation("com.google.android.gms:play-services-ads:24.7.0")
+
+    // Palette for color extraction
+    implementation("androidx.palette:palette-ktx:1.0.0")
 
     // Core
     implementation("androidx.core:core-ktx:1.16.0")
@@ -65,7 +68,7 @@ afterEvaluate {
 
                 groupId = "com.github.kmshack"
                 artifactId = "admob-native-template-compose"
-                version = "1.0.8"
+                version = "1.0.9"
 
                 pom {
                     name.set("Admob Native Template Compose")
