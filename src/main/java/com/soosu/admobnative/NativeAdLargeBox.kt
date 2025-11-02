@@ -74,14 +74,19 @@ fun NativeAdLargeBox(
 
                 // Set icon
                 nativeAd.icon?.drawable?.let { drawable ->
+                    iconContainer.visibility = View.VISIBLE
                     icon.visibility = View.VISIBLE
                     icon.setImageDrawable(drawable)
+                } ?: run {
+                    iconContainer.visibility = View.GONE
                 }
 
                 // Set body description
                 nativeAd.body?.let { body ->
                     description.text = body
                     description.visibility = View.VISIBLE
+                } ?: run {
+                    description.visibility = View.GONE
                 }
 
                 // Set media content (video or image)

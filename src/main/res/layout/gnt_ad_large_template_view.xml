@@ -62,6 +62,7 @@
                 android:id="@+id/icon_container"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
+                android:visibility="gone"
                 app:cardBackgroundColor="#fff"
                 app:cardCornerRadius="25dp"
                 app:cardElevation="0dp">
