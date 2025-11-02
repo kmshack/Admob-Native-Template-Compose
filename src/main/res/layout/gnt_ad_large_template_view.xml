@@ -93,7 +93,7 @@
                     android:maxLines="2"
                     android:textAlignment="viewStart"
                     android:textColor="#111"
-                    android:textSize="18sp"
+                    android:textSize="17sp"
                     android:textStyle="bold"
                     tools:text="Amazing Product You'll Love - Get It Now!" />
 
