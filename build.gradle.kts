@@ -55,8 +55,7 @@ dependencies {
     // Core
     implementation("androidx.core:core-ktx:1.16.0")
 
-    // ConstraintLayout and CardView for XML layouts
-    implementation("androidx.constraintlayout:constraintlayout:2.2.1")
+    // CardView for XML layouts
     implementation("androidx.cardview:cardview:1.0.0")
 }
 
@@ -68,7 +67,7 @@ afterEvaluate {
 
                 groupId = "com.github.kmshack"
                 artifactId = "admob-native-template-compose"
-                version = "1.1.2"
+                version = "1.1.3"
 
                 pom {
                     name.set("Admob Native Template Compose")

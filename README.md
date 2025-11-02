@@ -38,6 +38,7 @@ AdMob Native Template Compose provides ready-to-use, fully customizable native a
 - [Available Templates](#available-templates)
 - [API Reference](#api-reference)
 - [Advanced Usage](#advanced-usage)
+- [AI Integration Guide](#ai-integration-guide)
 - [Sample App](#sample-app)
 - [Dependencies](#dependencies)
 - [Contributing](#contributing)
@@ -77,7 +78,7 @@ dependencyResolutionManagement {
 
 ```kotlin
 dependencies {
-    implementation("com.github.kmshack:Admob-Native-Template-Compose:1.1.2")
+    implementation("com.github.kmshack:Admob-Native-Template-Compose:1.1.3")
 }
 ```
 
@@ -398,6 +399,335 @@ NativeAdAutoColorWrapper(nativeAd = nativeAd) { bgColor, txtColor ->
 
 ---
 
+## AI Integration Guide
+
+Use AI assistants (ChatGPT, Claude, Gemini, etc.) to quickly integrate AdMob Native Template Compose into your project. This guide provides optimized prompts for various integration scenarios.
+
+### 🤖 Why Use AI for Integration?
+
+- ⚡ **Faster Setup** - Get working code in seconds
+- 🎯 **Context-Aware** - AI understands your specific use case
+- 🔧 **Customization** - Easy to modify based on your requirements
+- 📚 **Learning** - Understand best practices through AI explanations
+
+---
+
+### 📝 Prompt Writing Best Practices
+
+When asking AI to help with this library:
+
+1. **Be Specific**: Mention the exact template you want (Small, Medium, Large, Headline)
+2. **Include Context**: Share your use case (e.g., "in a LazyColumn feed")
+3. **Specify Requirements**: Mention any customization needs (colors, modifiers, etc.)
+4. **Request Explanations**: Ask AI to explain the code for learning
+
+---
+
+### 🚀 Quick Start Prompts
+
+#### Basic Integration
+
+```
+I want to integrate AdMob Native ads in my Jetpack Compose app using the
+"Admob-Native-Template-Compose" library (version 1.1.3).
+
+Please provide:
+1. Complete build.gradle.kts setup including JitPack repository
+2. AndroidManifest.xml configuration for AdMob
+3. A Composable function that loads and displays a native ad using NativeAdSmallBox
+4. Proper error handling and loading states
+
+My project uses:
+- Kotlin 2.1.0
+- Jetpack Compose BOM 2025.06.00
+- Material 3
+```
+
+#### Template-Specific Prompts
+
+**Small Template (Compact Lists)**
+```
+I need to show native ads in my LazyColumn list using NativeAdSmallBox from
+Admob-Native-Template-Compose library.
+
+Requirements:
+- Show an ad every 5 items in the list
+- Include loading placeholder while ad loads
+- Match my app's color scheme (background: #F5F5F5, text: #333333)
+- Clean up ads properly when items are removed
+
+Please provide complete implementation with ViewModel if needed.
+```
+
+**Medium Template (Content Cards)**
+```
+Create a content card screen with NativeAdMediumBox from Admob-Native-Template-Compose.
+
+Requirements:
+- Display ad between news articles
+- Add rounded corners (16dp) and shadow elevation
+- Show CircularProgressIndicator while loading
+- Implement proper ad lifecycle management with DisposableEffect
+
+Use Material 3 design and include dark mode support.
+```
+
+**Large Template (Premium Placement)**
+```
+I want to implement a high-CTR ad placement using NativeAdLargeBox from
+Admob-Native-Template-Compose library.
+
+Requirements:
+- Full-screen ad between app sections
+- Customize CTA button color to #1976D2
+- Enable star rating and price display
+- Add auto color extraction using NativeAdAutoColorWrapper
+- Implement proper memory cleanup
+
+Please include detailed comments explaining each part.
+```
+
+**Headline Template (Minimal Banner)**
+```
+Add a minimal ad banner using NativeAdHeadlineBox from Admob-Native-Template-Compose
+at the bottom of my screen.
+
+Requirements:
+- Fixed position at bottom (not scrollable)
+- Transparent background to match app theme
+- Centered horizontally
+- Only show when ad is loaded (no placeholder)
+```
+
+---
+
+### 🎨 Customization Prompts
+
+#### Color Theming
+```
+I'm using NativeAdMediumBox from Admob-Native-Template-Compose and need to customize
+colors to match my brand.
+
+Brand colors:
+- Primary: #6200EE
+- Background: #FFFFFF
+- Surface: #F5F5F5
+- OnSurface: #000000
+
+Please show how to:
+1. Apply these colors to the ad template
+2. Ensure proper contrast for readability
+3. Support both light and dark mode
+```
+
+#### Auto Color Extraction
+```
+Show me how to implement NativeAdAutoColorWrapper from Admob-Native-Template-Compose
+to automatically extract colors from ad images.
+
+Requirements:
+- Use with NativeAdLargeBox
+- Fallback to Material 3 theme colors if extraction fails
+- Animate color transitions smoothly
+- Include explanation of how Palette API works
+```
+
+#### Advanced Modifiers
+```
+I want to enhance my NativeAdMediumBox with advanced Compose modifiers.
+
+Please show:
+1. Rounded corners with gradient border
+2. Subtle shadow and elevation
+3. Click ripple effect on entire card
+4. Smooth fade-in animation when ad loads
+5. Horizontal padding for tablet/desktop screens
+
+Use modern Compose best practices.
+```
+
+---
+
+### 🔧 Architecture Prompts
+
+#### MVVM Pattern
+```
+Create a complete MVVM architecture for managing AdMob native ads using
+Admob-Native-Template-Compose library.
+
+Include:
+- AdViewModel to handle ad loading logic
+- Sealed class for ad states (Loading, Success, Error)
+- Repository pattern for ad requests
+- Composable screen that observes ViewModel
+- Use NativeAdSmallBox template
+- Proper dependency injection setup (Hilt)
+
+Explain the architecture decisions.
+```
+
+#### Multi-Template Screen
+```
+Build a demo screen showing all four templates (Headline, Small, Medium, Large)
+from Admob-Native-Template-Compose in a scrollable list.
+
+Requirements:
+- LazyColumn with different ad templates
+- Each template loads independently
+- Section headers explaining each template
+- Loading shimmer effect for each ad type
+- Error handling per template
+- Material 3 design with proper spacing
+
+Include detailed comments.
+```
+
+---
+
+### 🐛 Troubleshooting Prompts
+
+#### Ad Not Showing
+```
+My NativeAdSmallBox from Admob-Native-Template-Compose is not displaying.
+
+Current setup:
+[paste your code here]
+
+AdMob App ID: ca-app-pub-xxxxxxxx~yyyyyy
+Ad Unit ID: ca-app-pub-xxxxxxxx/zzzzzzzz
+
+Please help debug:
+1. Check manifest configuration
+2. Verify ad loading code
+3. Add proper logging to see ad lifecycle
+4. Suggest test ad unit IDs for development
+5. Check for common mistakes
+```
+
+#### Memory Leaks
+```
+I'm experiencing memory leaks with AdMob native ads using Admob-Native-Template-Compose.
+
+My current implementation:
+[paste your code]
+
+Please show:
+1. Proper use of DisposableEffect for cleanup
+2. When to call nativeAd.destroy()
+3. How to handle configuration changes
+4. ViewModel integration for lifecycle management
+5. Memory profiling tips specific to native ads
+```
+
+#### Build/Dependency Issues
+```
+I'm getting build errors when adding Admob-Native-Template-Compose library.
+
+Error message:
+[paste error here]
+
+My build.gradle.kts:
+[paste relevant parts]
+
+Please help:
+1. Verify JitPack repository setup
+2. Check for dependency conflicts
+3. Suggest version catalog approach
+4. Fix any Kotlin/Compose version mismatches
+```
+
+---
+
+### 💡 Learning Prompts
+
+```
+I'm new to AdMob native ads with Jetpack Compose. Using the Admob-Native-Template-Compose
+library, please explain:
+
+1. How native ads differ from banner/interstitial ads
+2. The lifecycle of a native ad in Compose
+3. Best practices for ad placement for maximum CTR
+4. How to test ads during development
+5. Common pitfalls to avoid
+
+Include a beginner-friendly example using NativeAdSmallBox with detailed comments.
+```
+
+---
+
+### 📋 Complete Project Setup Prompt
+
+```
+I'm starting a new Android project and want to integrate AdMob native ads using
+Admob-Native-Template-Compose library from scratch.
+
+Project requirements:
+- Modern Android app with Jetpack Compose
+- MVVM architecture with Hilt
+- Material 3 design system
+- Show native ads in a news feed (LazyColumn)
+- Use NativeAdMediumBox template
+- Support dark mode
+- Proper error handling and logging
+
+Please provide:
+1. Complete project structure overview
+2. All necessary gradle files (build.gradle.kts, settings.gradle.kts)
+3. AndroidManifest.xml configuration
+4. AdViewModel with StateFlow
+5. Repository for ad loading
+6. Main screen composable with LazyColumn
+7. Test ad unit IDs for development
+8. Comments explaining each decision
+
+Make it production-ready and follow Android best practices.
+```
+
+---
+
+### 🎯 Tips for Best Results
+
+1. **Copy Library Code**: Include relevant code snippets from this README in your prompt
+2. **Version Specific**: Always mention library version (1.1.3) to get accurate syntax
+3. **Be Iterative**: Start with basic implementation, then ask for enhancements
+4. **Request Tests**: Ask AI to generate unit tests for your ad integration
+5. **Ask Why**: Request explanations to understand the implementation
+6. **Share Errors**: If something doesn't work, share exact error messages
+7. **Update Context**: Inform AI about your Kotlin/Compose versions
+
+---
+
+### 🔗 Useful Information to Share with AI
+
+When asking for help, provide these details for better responses:
+
+```
+Library: Admob-Native-Template-Compose
+Version: 1.1.3
+GitHub: https://github.com/kmshack/Admob-Native-Template-Compose
+JitPack: https://jitpack.io/#kmshack/Admob-Native-Template-Compose
+
+Available Templates:
+- NativeAdHeadlineBox (minimal, compact)
+- NativeAdSmallBox (list items)
+- NativeAdMediumBox (content cards)
+- NativeAdLargeBox (premium, high CTR)
+
+Key Features:
+- Material 3 integration
+- Auto color extraction (NativeAdAutoColorWrapper)
+- Fully customizable (backgroundColor, textColor, modifiers)
+- Built for Jetpack Compose
+
+My Tech Stack:
+- Kotlin: [your version]
+- Compose BOM: [your version]
+- Min SDK: [your min SDK]
+- Architecture: [MVVM/MVI/etc]
+```
+
+---
+
 ## Sample App
 
 A complete sample application is included in this repository demonstrating all three ad templates.
@@ -455,7 +785,6 @@ This library uses the following dependencies:
 | Google Play Services Ads | 24.7.0 | AdMob SDK |
 | Palette KTX | 1.0.0 | Auto color extraction from images |
 | AndroidX Core KTX | 1.16.0 | Core Android utilities |
-| ConstraintLayout | 2.2.1 | Layout for XML templates |
 | CardView | 1.0.0 | Card components |
 
 ---

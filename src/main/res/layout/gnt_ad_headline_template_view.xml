@@ -8,113 +8,96 @@
     android:layout_gravity="center"
     tools:ignore="ResourceName">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <FrameLayout
         android:id="@+id/background"
-        android:layout_gravity="center"
-        android:gravity="center"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:clickable="true"
+        android:focusable="true">
 
-        <TextView
-            android:id="@+id/primary"
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="4dp"
-            android:layout_marginBottom="8dp"
-            android:ellipsize="end"
-            android:includeFontPadding="true"
-            android:maxLines="1"
-            android:maxWidth="200dp"
-            android:textColor="#222"
-            android:textSize="13sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/bar"
-            app:layout_constraintHorizontal_bias="0"
-            app:layout_constraintHorizontal_chainStyle="packed"
-            app:layout_constraintStart_toEndOf="@+id/ad"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_chainStyle="packed"
-            tools:text="primary" />
+            android:layout_gravity="center"
+            android:layout_margin="2dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingStart="12dp"
+            android:paddingTop="10dp"
+            android:paddingEnd="12dp"
+            android:paddingBottom="10dp">
 
+            <TextView
+                android:id="@+id/ad"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/ad_badge_background"
+                android:includeFontPadding="false"
+                android:paddingStart="4dp"
+                android:paddingTop="2dp"
+                android:paddingEnd="4dp"
+                android:paddingBottom="2dp"
+                android:text="AD"
+                android:textColor="#666"
+                android:textSize="10sp"
+                android:textStyle="bold" />
 
-        <TextView
-            android:id="@+id/bar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="4dp"
-            android:layout_marginEnd="4dp"
-            android:alpha="0.4"
-            android:ellipsize="end"
-            android:includeFontPadding="true"
-            android:maxLines="1"
-            android:text="|"
-            android:textColor="#111"
-            android:textSize="13sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/cta"
-            app:layout_constraintStart_toEndOf="@+id/primary"
-            app:layout_constraintTop_toTopOf="parent" />
+            <TextView
+                android:id="@+id/primary"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="4dp"
+                android:ellipsize="end"
+                android:includeFontPadding="true"
+                android:maxLines="1"
+                android:maxWidth="200dp"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                tools:text="primary" />
 
-        <TextView
-            android:id="@+id/cta"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="4dp"
-            android:ellipsize="end"
-            android:includeFontPadding="true"
-            android:maxLines="1"
-            android:textColor="#111"
-            android:textSize="13sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/arrow"
-            app:layout_constraintStart_toEndOf="@+id/bar"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:text="download" />
+            <TextView
+                android:id="@+id/bar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:layout_marginEnd="4dp"
+                android:alpha="0.3"
+                android:ellipsize="end"
+                android:includeFontPadding="true"
+                android:maxLines="1"
+                android:text="|"
+                android:textSize="13sp" />
 
-        <ImageView
-            android:id="@+id/arrow"
-            android:layout_width="18dp"
-            android:layout_height="18dp"
-            android:layout_marginEnd="8dp"
-            android:src="@drawable/round_chevron_right_24"
-            app:layout_constraintBottom_toBottomOf="@+id/cta"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/cta"
-            app:layout_constraintTop_toTopOf="@+id/cta" />
+            <TextView
+                android:id="@+id/cta"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="4dp"
+                android:ellipsize="end"
+                android:includeFontPadding="true"
+                android:maxLines="1"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                tools:text="download" />
 
-        <TextView
-            android:id="@+id/ad"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp"
-            android:background="@drawable/ad_badge_background"
-            android:includeFontPadding="false"
-            android:paddingStart="4dp"
-            android:paddingTop="2dp"
-            android:paddingEnd="4dp"
-            android:paddingBottom="2dp"
-            android:text="AD"
-            android:textColor="#555"
-            android:textSize="10sp"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            <ImageView
+                android:id="@+id/arrow"
+                android:layout_width="18dp"
+                android:layout_height="18dp"
+                android:src="@drawable/round_chevron_right_24"
+                android:tint="#1976D2" />
 
+        </LinearLayout>
 
         <com.google.android.gms.ads.nativead.AdChoicesView
             android:id="@+id/adChoice"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="bottom|start"
             android:layout_marginStart="4dp"
-            android:layout_marginBottom="4dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            android:layout_marginBottom="4dp" />
 
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    </FrameLayout>
 </com.google.android.gms.ads.nativead.NativeAdView>
