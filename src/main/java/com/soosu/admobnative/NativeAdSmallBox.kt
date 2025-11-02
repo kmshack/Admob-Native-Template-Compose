@@ -62,8 +62,11 @@ fun NativeAdSmallBox(
                 }
 
                 nativeAd.icon?.drawable?.let { drawable ->
+                    iconContainer.visibility = View.VISIBLE
                     icon.visibility = View.VISIBLE
                     icon.setImageDrawable(drawable)
+                } ?: run {
+                    iconContainer.visibility = View.GONE
                 }
 
                 nativeAd.images.firstOrNull()?.let { image ->

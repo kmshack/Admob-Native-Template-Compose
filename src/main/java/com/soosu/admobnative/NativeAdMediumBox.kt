@@ -64,8 +64,11 @@ fun NativeAdMediumBox(
                 }
 
                 nativeAd.icon?.drawable?.let { drawable ->
+                    iconContainer.visibility = View.VISIBLE
                     icon.visibility = View.VISIBLE
                     icon.setImageDrawable(drawable)
+                } ?: run {
+                    iconContainer.visibility = View.GONE
                 }
 
                 nativeAd.body?.let { body ->
