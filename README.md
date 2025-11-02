@@ -147,7 +147,7 @@ The library provides four pre-built templates optimized for different use cases:
 
 ### 1. Small Template - `NativeAdSmallBox`
 
-<img width="625" height="354" alt="스크린샷 2025-11-01 오후 12 26 31" src="https://github.com/user-attachments/assets/4873d905-9b0f-4680-953c-fb72a8165e1d" />
+<img width="533" height="142" alt="스크린샷 2025-11-02 오후 10 48 57" src="https://github.com/user-attachments/assets/b207abe1-6d40-4b0e-8e5a-6e024534ef91" />
 
 **Best for:** List items, compact spaces, inline content
 
@@ -166,7 +166,8 @@ NativeAdSmallBox(
 
 ### 2. Medium Template - `NativeAdMediumBox`
 
-<img width="625" height="557" alt="스크린샷 2025-11-01 오후 12 26 59" src="https://github.com/user-attachments/assets/48c3c8ed-ece4-4e5b-8ed6-8bf2c571d21f" />
+<img width="531" height="505" alt="스크린샷 2025-11-02 오후 10 46 34" src="https://github.com/user-attachments/assets/12ed8d04-39c8-4df7-a0db-340189f1f9f7" />
+
 
 **Best for:** Cards, featured content, feed items
 
@@ -186,7 +187,8 @@ NativeAdMediumBox(
 
 ### 3. Headline Template - `NativeAdHeadlineBox`
 
-<img width="524" height="75" alt="스크린샷 2025-11-01 오후 12 28 36" src="https://github.com/user-attachments/assets/fd962500-91ec-4329-a731-a7a4b2041573" />
+<img width="515" height="76" alt="스크린샷 2025-11-02 오후 10 47 19" src="https://github.com/user-attachments/assets/4cb4845c-c288-4050-8ba3-a2922eb00d2f" />
+
 
 **Best for:** Minimal spaces, headers, banners
 
@@ -205,7 +207,7 @@ NativeAdHeadlineBox(
 
 ### 4. Large Template - `NativeAdLargeBox` 
 
-<img width="532" height="561" alt="스크린샷 2025-11-01 오후 12 29 10" src="https://github.com/user-attachments/assets/b7f3c5f2-bc02-468a-96a5-e135bbdf46b7" />
+<img width="535" height="635" alt="스크린샷 2025-11-02 오후 10 46 51" src="https://github.com/user-attachments/assets/d994d385-4b89-436b-9eec-99decbd76a44" />
 
 **Best for:** Premium placements, maximum engagement, high CTR campaigns
 
