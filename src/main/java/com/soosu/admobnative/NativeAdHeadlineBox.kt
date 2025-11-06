@@ -39,7 +39,6 @@ fun NativeAdHeadlineBox(
 
                 background.setBackgroundColor(bgColor)
                 primary.setTextColor(txtColor)
-                ad.setTextColor(txtColor)
                 cta.setTextColor(txtColor)
                 bar.setTextColor(txtColor)
                 arrow.setColorFilter(textColor.toArgb())
