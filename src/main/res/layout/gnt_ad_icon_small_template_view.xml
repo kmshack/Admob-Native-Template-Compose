@@ -22,9 +22,9 @@
             android:orientation="horizontal">
 
             <LinearLayout
-                android:layout_weight="1"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:gravity="center_vertical"
                 android:orientation="horizontal">
 
@@ -32,7 +32,7 @@
                     android:id="@+id/icon_container"
                     android:layout_width="48dp"
                     android:layout_height="48dp"
-                    android:layout_margin="15dp"
+                    android:layout_marginStart="15dp"
                     android:visibility="gone"
                     app:cardBackgroundColor="#fff"
                     app:cardCornerRadius="8dp"
@@ -51,6 +51,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="15dp"
                     android:layout_weight="1"
                     android:orientation="vertical">
 
@@ -73,8 +74,8 @@
                             android:paddingBottom="2dp"
                             android:text="AD"
                             android:textColor="#555"
-                            android:textStyle="bold"
-                            android:textSize="9sp" />
+                            android:textSize="9sp"
+                            android:textStyle="bold" />
 
                         <TextView
                             android:id="@+id/secondary"
@@ -130,7 +131,7 @@
                 android:id="@+id/arrow"
                 android:layout_width="24dp"
                 android:layout_height="24dp"
-                android:layout_margin="12dp"
+                android:layout_margin="8dp"
                 android:src="@drawable/round_chevron_right_24" />
 
         </LinearLayout>
