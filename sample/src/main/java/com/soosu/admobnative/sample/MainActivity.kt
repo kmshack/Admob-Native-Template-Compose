@@ -48,6 +48,7 @@ import com.google.android.gms.ads.nativead.NativeAd
 import com.google.android.gms.ads.nativead.NativeAdOptions
 import com.soosu.admobnative.NativeAdAutoColorWrapper
 import com.soosu.admobnative.NativeAdHeadlineBox
+import com.soosu.admobnative.NativeAdIconSmallBox
 import com.soosu.admobnative.NativeAdLargeBox
 import com.soosu.admobnative.NativeAdMediumBox
 import com.soosu.admobnative.NativeAdSmallBox
@@ -92,16 +93,19 @@ fun MainScreen() {
     // State for each ad type
     var headlineAd by remember { mutableStateOf<NativeAd?>(null) }
     var smallAd by remember { mutableStateOf<NativeAd?>(null) }
+    var iconSmallAd by remember { mutableStateOf<NativeAd?>(null) }
     var mediumAd by remember { mutableStateOf<NativeAd?>(null) }
     var largeAd by remember { mutableStateOf<NativeAd?>(null) }
 
     var headlineLoading by remember { mutableStateOf(true) }
     var smallLoading by remember { mutableStateOf(true) }
+    var iconSmallLoading by remember { mutableStateOf(true) }
     var mediumLoading by remember { mutableStateOf(true) }
     var largeLoading by remember { mutableStateOf(true) }
 
     var headlineError by remember { mutableStateOf<String?>(null) }
     var smallError by remember { mutableStateOf<String?>(null) }
+    var iconSmallError by remember { mutableStateOf<String?>(null) }
     var mediumError by remember { mutableStateOf<String?>(null) }
     var largeError by remember { mutableStateOf<String?>(null) }
 
@@ -142,6 +146,29 @@ fun MainScreen() {
                 override fun onAdFailedToLoad(error: LoadAdError) {
                     smallLoading = false
                     smallError = error.message
+                }
+            })
+            .withNativeAdOptions(
+                NativeAdOptions.Builder()
+                    .setAdChoicesPlacement(NativeAdOptions.ADCHOICES_TOP_RIGHT)
+                    .build()
+            )
+            .build()
+
+        adLoader.loadAd(AdRequest.Builder().build())
+    }
+
+    // Load icon small ad
+    LaunchedEffect(Unit) {
+        val adLoader = AdLoader.Builder(context, testAdUnitId)
+            .forNativeAd { ad ->
+                iconSmallAd = ad
+                iconSmallLoading = false
+            }
+            .withAdListener(object : AdListener() {
+                override fun onAdFailedToLoad(error: LoadAdError) {
+                    iconSmallLoading = false
+                    iconSmallError = error.message
                 }
             })
             .withNativeAdOptions(
@@ -205,6 +232,7 @@ fun MainScreen() {
         onDispose {
             headlineAd?.destroy()
             smallAd?.destroy()
+            iconSmallAd?.destroy()
             mediumAd?.destroy()
             largeAd?.destroy()
         }
@@ -289,6 +317,45 @@ fun MainScreen() {
                         }
                     }
 
+                }
+            }
+
+            // Icon Small Template
+            item {
+                AdSection(
+                    title = "Icon Small Template",
+                    description = "Compact layout with icon focus, perfect for content feeds",
+                    isLoading = iconSmallLoading,
+                    error = iconSmallError
+                ) {
+                    Column {
+                        NativeAdIconSmallBox(
+                            nativeAd = iconSmallAd,
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .clip(RoundedCornerShape(12.dp))
+                        )
+
+                        Spacer(modifier = Modifier.height(16.dp))
+
+                        NativeAdAutoColorWrapper(
+                            nativeAd = iconSmallAd,
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .padding(top = 8.dp)
+                                .clip(RoundedCornerShape(12.dp))
+                        ) { backgroundColor, textColor ->
+                            NativeAdIconSmallBox(
+                                nativeAd = iconSmallAd,
+                                backgroundColor = backgroundColor
+                                    ?: MaterialTheme.colorScheme.surfaceVariant,
+                                textColor = textColor ?: MaterialTheme.colorScheme.onBackground,
+                                modifier = Modifier
+                                    .fillMaxWidth()
+                                    .clip(RoundedCornerShape(12.dp))
+                            )
+                        }
+                    }
                 }
             }
 
