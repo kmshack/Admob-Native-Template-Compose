@@ -22,7 +22,7 @@ AdMob Native Template Compose provides ready-to-use, fully customizable native a
 - 🚀 **Zero Boilerplate** - Drop-in composables with sensible defaults
 - 🎨 **Material 3 Integration** - Automatically adapts to your app's theme
 - 🌈 **Auto Color Extraction** - Intelligent color extraction from ad images for seamless integration
-- 📱 **Multiple Templates** - Small, Medium, Large (CTR Optimized), and Headline layouts included
+- 📱 **Multiple Templates** - Small, Icon Small, Medium, Large (CTR Optimized), and Headline layouts included
 - ⚡ **Type-Safe** - Fully written in Kotlin with null safety
 - 🔧 **Highly Customizable** - Override colors, modifiers, and styling
 - 📈 **CTR Optimized** - Premium template designed for maximum click-through rates
@@ -143,7 +143,7 @@ fun MyScreen() {
 
 ## Available Templates
 
-The library provides four pre-built templates optimized for different use cases:
+The library provides five pre-built templates optimized for different use cases:
 
 ### 1. Small Template - `NativeAdSmallBox`
 
@@ -164,7 +164,25 @@ NativeAdSmallBox(
 )
 ```
 
-### 2. Medium Template - `NativeAdMediumBox`
+### 2. Icon Small Template - `NativeAdIconSmallBox`
+
+**Best for:** Content feeds, article lists, social media-style layouts
+
+**Features:**
+- Large app icon (48dp) with prominent display
+- Headline and body text
+- Minimal, clean design
+- Perfect for content-heavy feeds
+- Arrow indicator for engagement
+
+```kotlin
+NativeAdIconSmallBox(
+    nativeAd = nativeAd,
+    modifier = Modifier.fillMaxWidth()
+)
+```
+
+### 3. Medium Template - `NativeAdMediumBox`
 
 <img width="531" height="505" alt="스크린샷 2025-11-02 오후 10 46 34" src="https://github.com/user-attachments/assets/12ed8d04-39c8-4df7-a0db-340189f1f9f7" />
 
@@ -185,7 +203,7 @@ NativeAdMediumBox(
 )
 ```
 
-### 3. Headline Template - `NativeAdHeadlineBox`
+### 4. Headline Template - `NativeAdHeadlineBox`
 
 <img width="515" height="76" alt="스크린샷 2025-11-02 오후 10 47 19" src="https://github.com/user-attachments/assets/4cb4845c-c288-4050-8ba3-a2922eb00d2f" />
 
@@ -205,7 +223,7 @@ NativeAdHeadlineBox(
 )
 ```
 
-### 4. Large Template - `NativeAdLargeBox` 
+### 5. Large Template - `NativeAdLargeBox` 
 
 <img width="535" height="635" alt="스크린샷 2025-11-02 오후 10 46 51" src="https://github.com/user-attachments/assets/d994d385-4b89-436b-9eec-99decbd76a44" />
 
@@ -418,7 +436,7 @@ Use AI assistants (ChatGPT, Claude, Gemini, etc.) to quickly integrate AdMob Nat
 
 When asking AI to help with this library:
 
-1. **Be Specific**: Mention the exact template you want (Small, Medium, Large, Headline)
+1. **Be Specific**: Mention the exact template you want (Small, Icon Small, Medium, Large, Headline)
 2. **Include Context**: Share your use case (e.g., "in a LazyColumn feed")
 3. **Specify Requirements**: Mention any customization needs (colors, modifiers, etc.)
 4. **Request Explanations**: Ask AI to explain the code for learning
@@ -459,6 +477,21 @@ Requirements:
 - Clean up ads properly when items are removed
 
 Please provide complete implementation with ViewModel if needed.
+```
+
+**Icon Small Template (Content Feeds)**
+```
+I want to display native ads in my content feed using NativeAdIconSmallBox from
+Admob-Native-Template-Compose library.
+
+Requirements:
+- Show ads between article items with large app icon
+- Clean, minimal design that matches content style
+- Use body text instead of advertiser info
+- Include proper spacing and rounded corners (12dp)
+- Handle ad loading and error states
+
+Please provide implementation with best practices for content feeds.
 ```
 
 **Medium Template (Content Cards)**
@@ -570,7 +603,7 @@ Explain the architecture decisions.
 
 #### Multi-Template Screen
 ```
-Build a demo screen showing all four templates (Headline, Small, Medium, Large)
+Build a demo screen showing all five templates (Headline, Small, Icon Small, Medium, Large)
 from Admob-Native-Template-Compose in a scrollable list.
 
 Requirements:
@@ -712,6 +745,7 @@ JitPack: https://jitpack.io/#kmshack/Admob-Native-Template-Compose
 Available Templates:
 - NativeAdHeadlineBox (minimal, compact)
 - NativeAdSmallBox (list items)
+- NativeAdIconSmallBox (content feeds)
 - NativeAdMediumBox (content cards)
 - NativeAdLargeBox (premium, high CTR)
 
@@ -751,7 +785,7 @@ cd Admob-Native-Template-Compose
 
 The sample app demonstrates:
 
-- ✅ **All Four Templates** - Headline, Small, Medium, and Large (CTR Optimized) layouts
+- ✅ **All Five Templates** - Headline, Small, Icon Small, Medium, and Large (CTR Optimized) layouts
 - ✅ **Auto Color Extraction** - Live demonstration of automatic color extraction from ad images
 - ✅ **Live Ad Loading** - Using Google's test ad unit IDs
 - ✅ **Loading States** - Progress indicators while ads load
@@ -763,7 +797,7 @@ The sample app demonstrates:
 
 ### Screenshots
 
-The sample app displays all four template types in a scrollable list with detailed descriptions for each layout.
+The sample app displays all five template types in a scrollable list with detailed descriptions for each layout.
 
 ### Test Ad Unit ID
 
