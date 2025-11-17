@@ -60,6 +60,8 @@ fun NativeAdLargeBox(
                     secondary.text = " ⋅ ${nativeAd.advertiser}"
                 } else if (!nativeAd.store.isNullOrEmpty()) {
                     secondary.text = " ⋅ ${nativeAd.store}"
+                } else {
+                    secondary.text = " ⋅⋅⋅"
                 }
 
                 // Set headline

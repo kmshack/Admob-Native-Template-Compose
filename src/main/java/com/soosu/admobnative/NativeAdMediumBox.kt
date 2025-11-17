@@ -53,6 +53,8 @@ fun NativeAdMediumBox(
                     secondary.text = " ⋅ ${nativeAd.advertiser}"
                 } else if (!nativeAd.store.isNullOrEmpty()) {
                     secondary.text = " ⋅ ${nativeAd.store}"
+                } else {
+                    secondary.text = " ⋅⋅⋅"
                 }
 
                 nativeAd.headline?.let { headline ->
