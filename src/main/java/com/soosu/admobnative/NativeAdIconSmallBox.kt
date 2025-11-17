@@ -44,8 +44,13 @@ fun NativeAdIconSmallBox(
 //                ad.setTextColor(txtColor)
                 arrow.setColorFilter(txtColor)
 
-                nativeAd.body?.let { body ->
-                    secondary.text = body
+                // Set secondary text with fallback chain: body -> advertiser -> store -> callToAction
+                secondary.text = when {
+                    !nativeAd.body.isNullOrEmpty() -> nativeAd.body
+                    !nativeAd.advertiser.isNullOrEmpty() -> nativeAd.advertiser
+                    !nativeAd.store.isNullOrEmpty() -> nativeAd.store
+                    !nativeAd.callToAction.isNullOrEmpty() -> nativeAd.callToAction
+                    else -> ""
                 }
 
                 nativeAd.headline?.let { headline ->
