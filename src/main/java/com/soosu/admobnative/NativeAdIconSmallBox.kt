@@ -50,7 +50,7 @@ fun NativeAdIconSmallBox(
                     !nativeAd.advertiser.isNullOrEmpty() -> nativeAd.advertiser
                     !nativeAd.store.isNullOrEmpty() -> nativeAd.store
                     !nativeAd.callToAction.isNullOrEmpty() -> nativeAd.callToAction
-                    else -> ""
+                    else -> "ˑˑˑ"
                 }
 
                 nativeAd.headline?.let { headline ->
