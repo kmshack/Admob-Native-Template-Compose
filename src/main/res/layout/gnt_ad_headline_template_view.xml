@@ -40,7 +40,7 @@
                 android:paddingBottom="2dp"
                 android:text="AD"
                 android:textColor="#666"
-                android:textSize="10sp"
+                android:textSize="9sp"
                 android:textStyle="bold" />
 
             <TextView

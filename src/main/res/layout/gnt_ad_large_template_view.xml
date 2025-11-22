@@ -112,11 +112,13 @@
                         android:layout_height="wrap_content"
                         android:alpha="0.8"
                         android:includeFontPadding="false"
+                        android:paddingStart="4dp"
                         android:paddingTop="2dp"
+                        android:paddingEnd="4dp"
                         android:paddingBottom="2dp"
                         android:text="AD"
                         android:textColor="#555"
-                        android:textSize="10sp"
+                        android:textSize="9sp"
                         android:textStyle="bold" />
 
                     <TextView
