@@ -77,6 +77,13 @@ fun NativeAdFullWidthMediaBox(
                     primaryFallback.text = headline
                 }
 
+                // Set AD badge with semi-transparent background for overlay style
+                ad.setTextColor(ctaBgColor)
+                ad.background = GradientDrawable().apply {
+                    setColor(ctaTxtColor)
+                    cornerRadius = 6f * ad.context.resources.displayMetrics.density
+                }
+
                 // Set advertiser or store
                 if (!nativeAd.advertiser.isNullOrEmpty()) {
                     secondary.text = nativeAd.advertiser

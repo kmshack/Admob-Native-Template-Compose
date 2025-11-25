@@ -46,12 +46,10 @@ fun NativeAdSmallBox(
                 cta.setTextColor(txtColor)
                 arrow.setColorFilter(txtColor)
 
-                // Set AD badge background and text color
-                val adBadgeBgColor = getAdBadgeBackgroundColor(bgColor)
-                val adBadgeTextColor = getAdBadgeTextColor(adBadgeBgColor)
-                ad.setTextColor(adBadgeTextColor)
+                // Set AD badge colors (harmonize with other text)
+                ad.setTextColor(txtColor)
                 ad.background = GradientDrawable().apply {
-                    setColor(adBadgeBgColor)
+                    setColor(ColorUtils.setAlphaComponent(txtColor, 38))
                     cornerRadius = 6f * ad.context.resources.displayMetrics.density
                 }
 
@@ -92,32 +90,4 @@ fun NativeAdSmallBox(
         }
     }
 
-}
-
-/**
- * Calculate AD badge background color based on the main background color
- * Makes it slightly darker or lighter for contrast
- */
-private fun getAdBadgeBackgroundColor(backgroundColor: Int): Int {
-    val luminance = ColorUtils.calculateLuminance(backgroundColor)
-
-    return if (luminance > 0.5) {
-        // For light backgrounds, make the badge darker
-        ColorUtils.blendARGB(backgroundColor, android.graphics.Color.BLACK, 0.15f)
-    } else {
-        // For dark backgrounds, make the badge lighter
-        ColorUtils.blendARGB(backgroundColor, android.graphics.Color.WHITE, 0.15f)
-    }
-}
-
-/**
- * Calculate text color for AD badge based on badge background color
- */
-private fun getAdBadgeTextColor(badgeBackgroundColor: Int): Int {
-    val luminance = ColorUtils.calculateLuminance(badgeBackgroundColor)
-    return if (luminance > 0.5) {
-        android.graphics.Color.parseColor("#333333")
-    } else {
-        android.graphics.Color.parseColor("#EEEEEE")
-    }
 }

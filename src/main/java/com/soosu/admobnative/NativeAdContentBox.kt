@@ -1,7 +1,6 @@
 package com.soosu.admobnative
 
 import android.annotation.SuppressLint
-import android.graphics.drawable.GradientDrawable
 import android.view.View
 import androidx.compose.foundation.layout.Box
 import androidx.compose.material3.MaterialTheme
@@ -69,19 +68,18 @@ fun NativeAdContentBox(
                 val adView = nativeAdView.also { adView ->
                     adView.adChoicesView = adChoice
                     adView.callToActionView = ctaContainer
-                    adView.headlineView = primary
+                    adView.headlineView = headline
                     adView.iconView = icon
                     adView.bodyView = description
                     adView.mediaView = adMedia
-                    adView.advertiserView = advertiser
                 }
 
                 // Set background color
                 background.setBackgroundColor(bgColor)
 
                 // Set text colors
+                headline.setTextColor(txtColor)
                 primary.setTextColor(txtColor)
-                advertiser.setTextColor(txtColor)
                 description.setTextColor(ColorUtils.blendARGB(txtColor, bgColor, 0.3f))
                 sponsoredLabel.setTextColor(ColorUtils.blendARGB(txtColor, bgColor, 0.4f))
 
@@ -90,32 +88,18 @@ fun NativeAdContentBox(
                 cta.setTextColor(ctaTxtColor)
                 ctaArrow.setColorFilter(ctaTxtColor)
 
-                // Set AD badge styling
-                val adBadgeBgColor = getAdBadgeBackgroundColor(bgColor)
-                val adBadgeTextColor = getAdBadgeTextColor(adBadgeBgColor)
-                ad.setTextColor(adBadgeTextColor)
-                ad.background = GradientDrawable().apply {
-                    setColor(adBadgeBgColor)
-                    cornerRadius = 4f * ad.context.resources.displayMetrics.density
-                }
-
                 // Set advertiser name
-                if (!nativeAd.advertiser.isNullOrEmpty()) {
-                    advertiser.text = nativeAd.advertiser
+                if (!nativeAd.headline.isNullOrEmpty()) {
+                    headline.text = nativeAd.headline
+                } else if (!nativeAd.advertiser.isNullOrEmpty()) {
+                    headline.text = nativeAd.advertiser
                 } else if (!nativeAd.store.isNullOrEmpty()) {
-                    advertiser.text = nativeAd.store
-                } else {
-                    advertiser.text = "Sponsored Content"
+                    headline.text = nativeAd.store
                 }
 
-                // Set headline (main post text)
-                nativeAd.headline?.let { headline ->
-                    primary.text = headline
-                } ?: run {
-                    // Use body as fallback for headline
-                    nativeAd.body?.let { body ->
-                        primary.text = body
-                    }
+                // Use body as fallback for headline
+                nativeAd.body?.let { body ->
+                    primary.text = body
                 }
 
                 // Set call to action
