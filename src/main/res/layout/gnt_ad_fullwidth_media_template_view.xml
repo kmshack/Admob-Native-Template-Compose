@@ -1,0 +1,283 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.gms.ads.nativead.NativeAdView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/native_ad_view"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    tools:ignore="ResourceName">
+
+    <FrameLayout
+        android:id="@+id/background"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:focusable="true">
+
+        <!-- Full Width Media Container -->
+        <androidx.cardview.widget.CardView
+            android:id="@+id/ad_image_container"
+            android:layout_width="match_parent"
+            android:layout_height="280dp"
+            android:visibility="gone"
+            app:cardBackgroundColor="#000"
+            app:cardCornerRadius="12dp"
+            app:cardElevation="0dp"
+            tools:visibility="visible">
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <com.google.android.gms.ads.nativead.MediaView
+                    android:id="@+id/ad_media"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+
+                <ImageView
+                    android:id="@+id/ad_image"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:adjustViewBounds="true"
+                    android:scaleType="centerCrop"
+                    android:visibility="gone" />
+
+                <!-- Gradient Overlay for text readability -->
+                <View
+                    android:id="@+id/gradient_overlay"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+
+                <!-- Content Overlay at Bottom -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <!-- AD Badge -->
+                    <TextView
+                        android:id="@+id/ad"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/ad_badge_background"
+                        android:paddingStart="6dp"
+                        android:paddingTop="2dp"
+                        android:paddingEnd="6dp"
+                        android:paddingBottom="2dp"
+                        android:text="AD"
+                        android:textColor="#FFF"
+                        android:textSize="9sp"
+                        android:textStyle="bold" />
+
+                    <!-- Headline -->
+                    <TextView
+                        android:id="@+id/primary"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:ellipsize="end"
+                        android:includeFontPadding="false"
+                        android:lineSpacingMultiplier="1.1"
+                        android:maxLines="2"
+                        android:shadowColor="#80000000"
+                        android:shadowDx="0"
+                        android:shadowDy="1"
+                        android:shadowRadius="3"
+                        android:textAlignment="viewStart"
+                        android:textColor="#FFFFFF"
+                        android:textSize="20sp"
+                        android:textStyle="bold"
+                        tools:text="Stunning Visuals That Capture Attention" />
+
+                    <!-- Advertiser/Store -->
+                    <TextView
+                        android:id="@+id/secondary"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:alpha="0.9"
+                        android:ellipsize="end"
+                        android:maxLines="1"
+                        android:textColor="#FFFFFF"
+                        android:textSize="13sp"
+                        tools:text="Brand Name" />
+
+                    <!-- CTA Button -->
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/cta_container"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp"
+                        android:clickable="true"
+                        android:focusable="true"
+                        app:cardBackgroundColor="#FFFFFF"
+                        app:cardCornerRadius="24dp"
+                        app:cardElevation="2dp">
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:minWidth="140dp"
+                            android:orientation="horizontal"
+                            android:paddingStart="20dp"
+                            android:paddingTop="12dp"
+                            android:paddingEnd="16dp"
+                            android:paddingBottom="12dp">
+
+                            <TextView
+                                android:id="@+id/cta"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:includeFontPadding="false"
+                                android:textColor="#1976D2"
+                                android:textSize="15sp"
+                                android:textStyle="bold"
+                                tools:text="Learn More" />
+
+                            <ImageView
+                                android:id="@+id/cta_arrow"
+                                android:layout_width="20dp"
+                                android:layout_height="20dp"
+                                android:layout_marginStart="4dp"
+                                android:src="@drawable/round_chevron_right_24"
+                                android:tint="#1976D2" />
+
+                        </LinearLayout>
+
+                    </androidx.cardview.widget.CardView>
+
+                </LinearLayout>
+
+                <!-- Ad Choices (Top Right) -->
+                <com.google.android.gms.ads.nativead.AdChoicesView
+                    android:id="@+id/adChoice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="top|end"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="8dp" />
+
+            </FrameLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <!-- Fallback when no media (icon + text layout) -->
+        <LinearLayout
+            android:id="@+id/fallback_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#F5F5F5"
+            android:minHeight="200dp"
+            android:orientation="vertical"
+            android:padding="20dp"
+            android:visibility="gone">
+
+            <!-- Icon -->
+            <androidx.cardview.widget.CardView
+                android:id="@+id/icon_container"
+                android:layout_width="72dp"
+                android:layout_height="72dp"
+                android:visibility="gone"
+                app:cardBackgroundColor="#fff"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="2dp">
+
+                <ImageView
+                    android:id="@+id/icon"
+                    android:layout_width="72dp"
+                    android:layout_height="72dp"
+                    android:scaleType="centerCrop" />
+
+            </androidx.cardview.widget.CardView>
+
+            <!-- AD Badge -->
+            <TextView
+                android:id="@+id/ad_fallback"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:background="@drawable/ad_badge_background"
+                android:paddingStart="6dp"
+                android:paddingTop="2dp"
+                android:paddingEnd="6dp"
+                android:paddingBottom="2dp"
+                android:text="AD"
+                android:textColor="#555"
+                android:textSize="9sp"
+                android:textStyle="bold" />
+
+            <!-- Headline -->
+            <TextView
+                android:id="@+id/primary_fallback"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:ellipsize="end"
+                android:maxLines="2"
+                android:textColor="#111"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                tools:text="Headline Text" />
+
+            <!-- Body -->
+            <TextView
+                android:id="@+id/description"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:ellipsize="end"
+                android:maxLines="2"
+                android:textColor="#666"
+                android:textSize="14sp"
+                tools:text="Description text goes here" />
+
+            <!-- CTA Button Fallback -->
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cta_container_fallback"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                app:cardBackgroundColor="#1976D2"
+                app:cardCornerRadius="24dp"
+                app:cardElevation="0dp">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:minWidth="140dp"
+                    android:orientation="horizontal"
+                    android:paddingStart="20dp"
+                    android:paddingTop="12dp"
+                    android:paddingEnd="16dp"
+                    android:paddingBottom="12dp">
+
+                    <TextView
+                        android:id="@+id/cta_fallback"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="#FFFFFF"
+                        android:textSize="15sp"
+                        android:textStyle="bold"
+                        tools:text="Learn More" />
+
+                    <ImageView
+                        android:id="@+id/cta_arrow_fallback"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_marginStart="4dp"
+                        android:src="@drawable/round_chevron_right_24"
+                        android:tint="#FFFFFF" />
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+        </LinearLayout>
+
+    </FrameLayout>
+
+</com.google.android.gms.ads.nativead.NativeAdView>

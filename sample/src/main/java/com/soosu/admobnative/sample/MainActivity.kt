@@ -46,7 +46,10 @@ import com.google.android.gms.ads.LoadAdError
 import com.google.android.gms.ads.MobileAds
 import com.google.android.gms.ads.nativead.NativeAd
 import com.google.android.gms.ads.nativead.NativeAdOptions
+import com.soosu.admobnative.NativeAdAppInstallBox
 import com.soosu.admobnative.NativeAdAutoColorWrapper
+import com.soosu.admobnative.NativeAdContentBox
+import com.soosu.admobnative.NativeAdFullWidthMediaBox
 import com.soosu.admobnative.NativeAdHeadlineBox
 import com.soosu.admobnative.NativeAdIconSmallBox
 import com.soosu.admobnative.NativeAdLargeBox
@@ -96,18 +99,27 @@ fun MainScreen() {
     var iconSmallAd by remember { mutableStateOf<NativeAd?>(null) }
     var mediumAd by remember { mutableStateOf<NativeAd?>(null) }
     var largeAd by remember { mutableStateOf<NativeAd?>(null) }
+    var fullWidthMediaAd by remember { mutableStateOf<NativeAd?>(null) }
+    var contentAd by remember { mutableStateOf<NativeAd?>(null) }
+    var appInstallAd by remember { mutableStateOf<NativeAd?>(null) }
 
     var headlineLoading by remember { mutableStateOf(true) }
     var smallLoading by remember { mutableStateOf(true) }
     var iconSmallLoading by remember { mutableStateOf(true) }
     var mediumLoading by remember { mutableStateOf(true) }
     var largeLoading by remember { mutableStateOf(true) }
+    var fullWidthMediaLoading by remember { mutableStateOf(true) }
+    var contentLoading by remember { mutableStateOf(true) }
+    var appInstallLoading by remember { mutableStateOf(true) }
 
     var headlineError by remember { mutableStateOf<String?>(null) }
     var smallError by remember { mutableStateOf<String?>(null) }
     var iconSmallError by remember { mutableStateOf<String?>(null) }
     var mediumError by remember { mutableStateOf<String?>(null) }
     var largeError by remember { mutableStateOf<String?>(null) }
+    var fullWidthMediaError by remember { mutableStateOf<String?>(null) }
+    var contentError by remember { mutableStateOf<String?>(null) }
+    var appInstallError by remember { mutableStateOf<String?>(null) }
 
     // Test ad unit ID for native ads
     val testAdUnitId = "ca-app-pub-3940256099942544/2247696110"
@@ -227,6 +239,75 @@ fun MainScreen() {
         adLoader.loadAd(AdRequest.Builder().build())
     }
 
+    // Load full width media ad (CTR Optimized)
+    LaunchedEffect(Unit) {
+        val adLoader = AdLoader.Builder(context, testAdUnitId)
+            .forNativeAd { ad ->
+                fullWidthMediaAd = ad
+                fullWidthMediaLoading = false
+            }
+            .withAdListener(object : AdListener() {
+                override fun onAdFailedToLoad(error: LoadAdError) {
+                    fullWidthMediaLoading = false
+                    fullWidthMediaError = error.message
+                }
+            })
+            .withNativeAdOptions(
+                NativeAdOptions.Builder()
+                    .setAdChoicesPlacement(NativeAdOptions.ADCHOICES_TOP_RIGHT)
+                    .build()
+            )
+            .build()
+
+        adLoader.loadAd(AdRequest.Builder().build())
+    }
+
+    // Load content ad (CTR Optimized)
+    LaunchedEffect(Unit) {
+        val adLoader = AdLoader.Builder(context, testAdUnitId)
+            .forNativeAd { ad ->
+                contentAd = ad
+                contentLoading = false
+            }
+            .withAdListener(object : AdListener() {
+                override fun onAdFailedToLoad(error: LoadAdError) {
+                    contentLoading = false
+                    contentError = error.message
+                }
+            })
+            .withNativeAdOptions(
+                NativeAdOptions.Builder()
+                    .setAdChoicesPlacement(NativeAdOptions.ADCHOICES_TOP_RIGHT)
+                    .build()
+            )
+            .build()
+
+        adLoader.loadAd(AdRequest.Builder().build())
+    }
+
+    // Load app install ad (CTR Optimized)
+    LaunchedEffect(Unit) {
+        val adLoader = AdLoader.Builder(context, testAdUnitId)
+            .forNativeAd { ad ->
+                appInstallAd = ad
+                appInstallLoading = false
+            }
+            .withAdListener(object : AdListener() {
+                override fun onAdFailedToLoad(error: LoadAdError) {
+                    appInstallLoading = false
+                    appInstallError = error.message
+                }
+            })
+            .withNativeAdOptions(
+                NativeAdOptions.Builder()
+                    .setAdChoicesPlacement(NativeAdOptions.ADCHOICES_TOP_RIGHT)
+                    .build()
+            )
+            .build()
+
+        adLoader.loadAd(AdRequest.Builder().build())
+    }
+
     // Clean up ads when leaving composition
     DisposableEffect(Unit) {
         onDispose {
@@ -235,6 +316,9 @@ fun MainScreen() {
             iconSmallAd?.destroy()
             mediumAd?.destroy()
             largeAd?.destroy()
+            fullWidthMediaAd?.destroy()
+            contentAd?.destroy()
+            appInstallAd?.destroy()
         }
     }
 
@@ -261,6 +345,138 @@ fun MainScreen() {
             contentPadding = PaddingValues(16.dp),
             verticalArrangement = Arrangement.spacedBy(24.dp)
         ) {
+            // CTR Optimized Section Header
+            item {
+                Card(
+                    modifier = Modifier.fillMaxWidth(),
+                    colors = CardDefaults.cardColors(
+                        containerColor = Color(0xFF4CAF50).copy(alpha = 0.1f)
+                    )
+                ) {
+                    Column(
+                        modifier = Modifier.padding(16.dp),
+                        verticalArrangement = Arrangement.spacedBy(4.dp)
+                    ) {
+                        Text(
+                            "CTR Optimized Templates",
+                            style = MaterialTheme.typography.titleMedium,
+                            fontWeight = FontWeight.Bold,
+                            color = Color(0xFF2E7D32)
+                        )
+                        Text(
+                            "High-performance ad templates designed for maximum click-through rates",
+                            style = MaterialTheme.typography.bodySmall,
+                            color = Color(0xFF388E3C)
+                        )
+                    }
+                }
+            }
+
+            // Full Width Media Template (CTR Optimized)
+            item {
+                AdSection(
+                    title = "Full Width Media Template",
+                    description = "High-impact layout with large media, gradient overlay, and prominent CTA. Perfect for hero placements.",
+                    isLoading = fullWidthMediaLoading,
+                    error = fullWidthMediaError,
+                    badge = "CTR+"
+                ) {
+                    Column {
+                        NativeAdFullWidthMediaBox(
+                            nativeAd = fullWidthMediaAd,
+                            modifier = Modifier.fillMaxWidth()
+                        )
+
+                        Spacer(modifier = Modifier.height(16.dp))
+
+                        // Dark CTA variant
+                        NativeAdFullWidthMediaBox(
+                            nativeAd = fullWidthMediaAd,
+                            ctaButtonColor = Color(0xFF4CAF50),
+                            ctaTextColor = Color.White,
+                            modifier = Modifier.fillMaxWidth()
+                        )
+                    }
+                }
+            }
+
+            // Content Template (CTR Optimized)
+            item {
+                AdSection(
+                    title = "Content Feed Template",
+                    description = "Social media style layout that blends naturally with content feeds. Reduces ad blindness.",
+                    isLoading = contentLoading,
+                    error = contentError,
+                    badge = "CTR+"
+                ) {
+                    Column {
+                        NativeAdContentBox(
+                            nativeAd = contentAd,
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .clip(RoundedCornerShape(12.dp))
+                        )
+
+                        Spacer(modifier = Modifier.height(16.dp))
+
+                        // Auto color variant
+                        NativeAdAutoColorWrapper(
+                            nativeAd = contentAd,
+                            modifier = Modifier.fillMaxWidth()
+                        ) { backgroundColor, textColor ->
+                            NativeAdContentBox(
+                                nativeAd = contentAd,
+                                backgroundColor = backgroundColor
+                                    ?: MaterialTheme.colorScheme.surface,
+                                textColor = textColor ?: MaterialTheme.colorScheme.onSurface,
+                                modifier = Modifier
+                                    .fillMaxWidth()
+                                    .clip(RoundedCornerShape(12.dp))
+                            )
+                        }
+                    }
+                }
+            }
+
+            // App Install Template (CTR Optimized)
+            item {
+                AdSection(
+                    title = "App Install Template",
+                    description = "App Store style layout optimized for app promotions. Features rating, price, and prominent install button.",
+                    isLoading = appInstallLoading,
+                    error = appInstallError,
+                    badge = "CTR+"
+                ) {
+                    Column {
+                        NativeAdAppInstallBox(
+                            nativeAd = appInstallAd,
+                            modifier = Modifier.fillMaxWidth()
+                        )
+
+                        Spacer(modifier = Modifier.height(16.dp))
+
+                        // Green CTA variant
+                        NativeAdAppInstallBox(
+                            nativeAd = appInstallAd,
+                            ctaButtonColor = Color(0xFF4CAF50),
+                            ctaTextColor = Color.White,
+                            modifier = Modifier.fillMaxWidth()
+                        )
+                    }
+                }
+            }
+
+            // Standard Templates Section Header
+            item {
+                Spacer(modifier = Modifier.height(8.dp))
+                Text(
+                    "Standard Templates",
+                    style = MaterialTheme.typography.titleMedium,
+                    fontWeight = FontWeight.Bold,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant
+                )
+            }
+
             // Headline Template
             item {
                 AdSection(
@@ -450,7 +666,7 @@ fun MainScreen() {
                         verticalArrangement = Arrangement.spacedBy(8.dp)
                     ) {
                         Text(
-                            "ℹ️ Information",
+                            "Information",
                             style = MaterialTheme.typography.titleMedium,
                             fontWeight = FontWeight.Bold,
                             color = MaterialTheme.colorScheme.onSecondaryContainer
@@ -487,17 +703,39 @@ fun AdSection(
     description: String,
     isLoading: Boolean,
     error: String?,
+    badge: String? = null,
     content: @Composable () -> Unit
 ) {
     Column(
         modifier = Modifier.fillMaxWidth(),
         verticalArrangement = Arrangement.spacedBy(8.dp)
     ) {
-        Text(
-            text = title,
-            style = MaterialTheme.typography.titleLarge,
-            fontWeight = FontWeight.Bold
-        )
+        androidx.compose.foundation.layout.Row(
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.spacedBy(8.dp)
+        ) {
+            Text(
+                text = title,
+                style = MaterialTheme.typography.titleLarge,
+                fontWeight = FontWeight.Bold
+            )
+            if (badge != null) {
+                Card(
+                    colors = CardDefaults.cardColors(
+                        containerColor = Color(0xFF4CAF50)
+                    ),
+                    shape = RoundedCornerShape(4.dp)
+                ) {
+                    Text(
+                        text = badge,
+                        style = MaterialTheme.typography.labelSmall,
+                        fontWeight = FontWeight.Bold,
+                        color = Color.White,
+                        modifier = Modifier.padding(horizontal = 6.dp, vertical = 2.dp)
+                    )
+                }
+            }
+        }
         Text(
             text = description,
             style = MaterialTheme.typography.bodyMedium,
@@ -522,7 +760,7 @@ fun AdSection(
                         verticalArrangement = Arrangement.spacedBy(8.dp)
                     ) {
                         Text(
-                            "⚠️ Failed to load ad",
+                            "Failed to load ad",
                             style = MaterialTheme.typography.bodyMedium,
                             color = MaterialTheme.colorScheme.error
                         )
