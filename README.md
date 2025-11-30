@@ -147,7 +147,8 @@ The library provides eight pre-built templates optimized for different use cases
 
 ### 1. Small Template - `NativeAdSmallBox`
 
-<img width="533" height="142" alt="스크린샷 2025-11-02 오후 10 48 57" src="https://github.com/user-attachments/assets/b207abe1-6d40-4b0e-8e5a-6e024534ef91" />
+<img width="536" height="141" alt="스크린샷 2025-11-30 오후 11 50 34" src="https://github.com/user-attachments/assets/bbc44bb5-38f2-4603-bd98-26f00e8a7b67" />
+
 
 **Best for:** List items, compact spaces, inline content
 
@@ -166,7 +167,7 @@ NativeAdSmallBox(
 
 ### 2. Icon Small Template - `NativeAdIconSmallBox`
 
-<img width="442" height="112" alt="스크린샷 2025-11-17 오전 12 24 37" src="https://github.com/user-attachments/assets/d007b845-74f4-4711-8562-e1fb1e0fbff2" />
+<img width="529" height="133" alt="스크린샷 2025-11-30 오후 11 48 22" src="https://github.com/user-attachments/assets/53d51a82-8583-47ac-9ea8-9fbf56afac72" />
 
 **Best for:** Content feeds, article lists, social media-style layouts
 
@@ -186,7 +187,7 @@ NativeAdIconSmallBox(
 
 ### 3. Medium Template - `NativeAdMediumBox`
 
-<img width="531" height="505" alt="스크린샷 2025-11-02 오후 10 46 34" src="https://github.com/user-attachments/assets/12ed8d04-39c8-4df7-a0db-340189f1f9f7" />
+<img width="530" height="729" alt="스크린샷 2025-11-30 오후 11 48 49" src="https://github.com/user-attachments/assets/340dffae-825e-49ab-b9be-eaa24e9682cb" />
 
 
 **Best for:** Cards, featured content, feed items
@@ -227,7 +228,8 @@ NativeAdHeadlineBox(
 
 ### 5. Large Template - `NativeAdLargeBox` 
 
-<img width="535" height="635" alt="스크린샷 2025-11-02 오후 10 46 51" src="https://github.com/user-attachments/assets/d994d385-4b89-436b-9eec-99decbd76a44" />
+<img width="533" height="831" alt="스크린샷 2025-11-30 오후 11 49 12" src="https://github.com/user-attachments/assets/9006fe2d-064d-4210-b19a-a1cc35a3645c" />
+
 
 **Best for:** Premium placements, maximum engagement, high CTR campaigns
 
@@ -259,6 +261,9 @@ NativeAdLargeBox(
 
 ### 6. App Install Template - `NativeAdAppInstallBox`
 
+<img width="527" height="726" alt="스크린샷 2025-11-30 오후 11 49 32" src="https://github.com/user-attachments/assets/c3d69cb1-8c90-4bd9-aac4-81eea673c778" />
+
+
 **Best for:** App promotion campaigns, game advertisements, app store style placements
 
 **Features:**
@@ -286,6 +291,8 @@ NativeAdAppInstallBox(
 
 ### 7. Content Feed Template - `NativeAdContentBox`
 
+<img width="525" height="740" alt="스크린샷 2025-11-30 오후 11 50 05" src="https://github.com/user-attachments/assets/3881e988-2d33-4927-98f0-3f4428519a64" />
+
 **Best for:** News feed placements, content discovery feeds, social media style apps
 
 **Features:**
@@ -312,6 +319,8 @@ NativeAdContentBox(
 ```
 
 ### 8. Full Width Media Template - `NativeAdFullWidthMediaBox`
+
+<img width="532" height="396" alt="스크린샷 2025-11-30 오후 11 49 50" src="https://github.com/user-attachments/assets/8e3b3fe7-438d-45d5-ba2a-6368f4263f4b" />
 
 **Best for:** Hero placements, full-screen interstitial-style native ads, high-impact banner replacements
 
