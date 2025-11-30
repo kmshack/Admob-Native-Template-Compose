@@ -1,6 +1,7 @@
 package com.soosu.admobnative
 
 import android.annotation.SuppressLint
+import android.util.Log
 import android.view.View
 import androidx.compose.foundation.layout.Box
 import androidx.compose.material3.MaterialTheme
@@ -86,7 +87,6 @@ fun NativeAdContentBox(
                 // Configure CTA button
                 ctaContainer.setCardBackgroundColor(ctaBgColor)
                 cta.setTextColor(ctaTxtColor)
-                ctaArrow.setColorFilter(ctaTxtColor)
 
                 // Set advertiser name
                 if (!nativeAd.headline.isNullOrEmpty()) {
@@ -129,12 +129,30 @@ fun NativeAdContentBox(
 
                 // Set media content
                 nativeAd.mediaContent?.let { mediaContent ->
+                    Log.d(
+                        "NativeAdContentBox",
+                        "MediaContent - aspectRatio: ${mediaContent.aspectRatio}"
+                    )
                     adMedia.setMediaContent(mediaContent)
+                    adMedia.post {
+                        val width = adMedia.width
+                        val height = (width / mediaContent.aspectRatio).toInt()
+                        adMedia.layoutParams = adMedia.layoutParams.apply {
+                            this.height = height
+                        }
+                    }
                     adMedia.visibility = View.VISIBLE
                     adImageContainer.visibility = View.VISIBLE
                 } ?: run {
                     // Fallback to static image
                     nativeAd.images.firstOrNull()?.let { image ->
+                        val width = image.drawable?.intrinsicWidth ?: 0
+                        val height = image.drawable?.intrinsicHeight ?: 0
+                        val aspectRatio = if (height > 0) width.toFloat() / height.toFloat() else 0f
+                        Log.d(
+                            "NativeAdContentBox",
+                            "Image - width: $width, height: $height, aspectRatio: $aspectRatio"
+                        )
                         adMedia.visibility = View.GONE
                         adImage.visibility = View.VISIBLE
                         adImage.setImageDrawable(image.drawable)

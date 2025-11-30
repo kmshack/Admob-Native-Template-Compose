@@ -137,14 +137,6 @@
                                 android:textStyle="bold"
                                 tools:text="Learn More" />
 
-                            <ImageView
-                                android:id="@+id/cta_arrow"
-                                android:layout_width="20dp"
-                                android:layout_height="20dp"
-                                android:layout_marginStart="4dp"
-                                android:src="@drawable/round_chevron_right_24"
-                                android:tint="#1976D2" />
-
                         </LinearLayout>
 
                     </androidx.cardview.widget.CardView>

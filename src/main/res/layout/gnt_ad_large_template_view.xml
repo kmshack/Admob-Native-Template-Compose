@@ -20,7 +20,7 @@
         <androidx.cardview.widget.CardView
             android:id="@+id/ad_image_container"
             android:layout_width="match_parent"
-            android:layout_height="220dp"
+            android:layout_height="wrap_content"
             android:visibility="gone"
             app:cardBackgroundColor="#fff"
             app:cardCornerRadius="0dp"
@@ -29,19 +29,20 @@
 
             <FrameLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="wrap_content">
 
                 <com.google.android.gms.ads.nativead.MediaView
                     android:id="@+id/ad_media"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent" />
+                    android:layout_height="wrap_content"
+                    android:adjustViewBounds="true" />
 
                 <ImageView
                     android:id="@+id/ad_image"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:adjustViewBounds="true"
-                    android:scaleType="fitCenter"
+                    android:scaleType="fitXY"
                     android:visibility="gone" />
 
             </FrameLayout>
@@ -233,14 +234,6 @@
                     android:textSize="17sp"
                     android:textStyle="bold"
                     tools:text="Install Now" />
-
-                <ImageView
-                    android:id="@+id/cta_arrow"
-                    android:layout_width="22dp"
-                    android:layout_height="22dp"
-                    android:layout_marginStart="8dp"
-                    android:src="@drawable/round_chevron_right_24"
-                    android:tint="#FFFFFF" />
 
             </LinearLayout>
 

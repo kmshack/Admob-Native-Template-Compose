@@ -69,7 +69,6 @@ fun NativeAdFullWidthMediaBox(
                 // Configure CTA button colors
                 ctaContainer.setCardBackgroundColor(ctaBgColor)
                 cta.setTextColor(ctaTxtColor)
-                ctaArrow.setColorFilter(ctaTxtColor)
 
                 // Set headline
                 nativeAd.headline?.let { headline ->

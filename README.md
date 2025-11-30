@@ -22,7 +22,7 @@ AdMob Native Template Compose provides ready-to-use, fully customizable native a
 - 🚀 **Zero Boilerplate** - Drop-in composables with sensible defaults
 - 🎨 **Material 3 Integration** - Automatically adapts to your app's theme
 - 🌈 **Auto Color Extraction** - Intelligent color extraction from ad images for seamless integration
-- 📱 **Multiple Templates** - Small, Icon Small, Medium, Large (CTR Optimized), and Headline layouts included
+- 📱 **Multiple Templates** - 8 layouts: Small, Icon Small, Medium, Large, Headline, App Install, Content Feed, and Full Width Media
 - ⚡ **Type-Safe** - Fully written in Kotlin with null safety
 - 🔧 **Highly Customizable** - Override colors, modifiers, and styling
 - 📈 **CTR Optimized** - Premium template designed for maximum click-through rates
@@ -78,7 +78,7 @@ dependencyResolutionManagement {
 
 ```kotlin
 dependencies {
-    implementation("com.github.kmshack:Admob-Native-Template-Compose:1.2.3")
+    implementation("com.github.kmshack:Admob-Native-Template-Compose:1.2.4")
 }
 ```
 
@@ -143,7 +143,7 @@ fun MyScreen() {
 
 ## Available Templates
 
-The library provides five pre-built templates optimized for different use cases:
+The library provides eight pre-built templates optimized for different use cases:
 
 ### 1. Small Template - `NativeAdSmallBox`
 
@@ -254,6 +254,84 @@ NativeAdLargeBox(
     modifier = Modifier.fillMaxWidth(),
     ctaButtonColor = Color(0xFF1976D2), // Customize CTA button color
     ctaTextColor = Color.White
+)
+```
+
+### 6. App Install Template - `NativeAdAppInstallBox`
+
+**Best for:** App promotion campaigns, game advertisements, app store style placements
+
+**Features:**
+- App Store style layout with familiar design
+- Large app icon with rounded corners
+- Star rating display (when available)
+- Price/Free indicator
+- Prominent "Install" button
+- Optional screenshot/media preview
+
+**CTR Optimization:**
+- Familiar app store layout increases trust
+- Clear rating display builds credibility
+- Prominent install button drives action
+- Price transparency reduces friction
+
+```kotlin
+NativeAdAppInstallBox(
+    nativeAd = nativeAd,
+    modifier = Modifier.fillMaxWidth(),
+    ctaButtonColor = Color(0xFF1976D2),
+    ctaTextColor = Color.White
+)
+```
+
+### 7. Content Feed Template - `NativeAdContentBox`
+
+**Best for:** News feed placements, content discovery feeds, social media style apps
+
+**Features:**
+- Social media post-style layout
+- Profile icon + advertiser name header
+- "Sponsored" label for transparency
+- Post-style headline with natural line spacing
+- Full-width media with rounded corners
+- Engagement-style CTA button
+- Dynamic media height based on aspect ratio
+
+**CTR Optimization:**
+- Native feel reduces ad blindness
+- Familiar social post layout increases engagement
+- Clear but non-intrusive sponsorship disclosure
+
+```kotlin
+NativeAdContentBox(
+    nativeAd = nativeAd,
+    modifier = Modifier.fillMaxWidth(),
+    ctaButtonColor = Color(0xFF1976D2),
+    ctaTextColor = Color.White
+)
+```
+
+### 8. Full Width Media Template - `NativeAdFullWidthMediaBox`
+
+**Best for:** Hero placements, full-screen interstitial-style native ads, high-impact banner replacements
+
+**Features:**
+- Large media/image display (280dp height)
+- Gradient overlay for text readability
+- Overlay CTA button for immediate action
+- Fallback layout when no media is available
+
+**CTR Optimization:**
+- Visual impact captures attention immediately
+- Gradient overlay ensures text readability
+- CTA button positioned for maximum visibility
+
+```kotlin
+NativeAdFullWidthMediaBox(
+    nativeAd = nativeAd,
+    modifier = Modifier.fillMaxWidth(),
+    ctaButtonColor = Color.White,
+    ctaTextColor = Color(0xFF1976D2)
 )
 ```
 
@@ -438,7 +516,7 @@ Use AI assistants (ChatGPT, Claude, Gemini, etc.) to quickly integrate AdMob Nat
 
 When asking AI to help with this library:
 
-1. **Be Specific**: Mention the exact template you want (Small, Icon Small, Medium, Large, Headline)
+1. **Be Specific**: Mention the exact template you want (Small, Icon Small, Medium, Large, Headline, App Install, Content Feed, Full Width Media)
 2. **Include Context**: Share your use case (e.g., "in a LazyColumn feed")
 3. **Specify Requirements**: Mention any customization needs (colors, modifiers, etc.)
 4. **Request Explanations**: Ask AI to explain the code for learning
@@ -451,7 +529,7 @@ When asking AI to help with this library:
 
 ```
 I want to integrate AdMob Native ads in my Jetpack Compose app using the
-"Admob-Native-Template-Compose" library (version 1.2.3).
+"Admob-Native-Template-Compose" library (version 1.2.4).
 
 Please provide:
 1. Complete build.gradle.kts setup including JitPack repository
@@ -605,7 +683,7 @@ Explain the architecture decisions.
 
 #### Multi-Template Screen
 ```
-Build a demo screen showing all five templates (Headline, Small, Icon Small, Medium, Large)
+Build a demo screen showing all eight templates (Headline, Small, Icon Small, Medium, Large, App Install, Content Feed, Full Width Media)
 from Admob-Native-Template-Compose in a scrollable list.
 
 Requirements:
@@ -725,7 +803,7 @@ Make it production-ready and follow Android best practices.
 ### 🎯 Tips for Best Results
 
 1. **Copy Library Code**: Include relevant code snippets from this README in your prompt
-2. **Version Specific**: Always mention library version (1.2.3) to get accurate syntax
+2. **Version Specific**: Always mention library version (1.2.4) to get accurate syntax
 3. **Be Iterative**: Start with basic implementation, then ask for enhancements
 4. **Request Tests**: Ask AI to generate unit tests for your ad integration
 5. **Ask Why**: Request explanations to understand the implementation
@@ -750,6 +828,9 @@ Available Templates:
 - NativeAdIconSmallBox (content feeds)
 - NativeAdMediumBox (content cards)
 - NativeAdLargeBox (premium, high CTR)
+- NativeAdAppInstallBox (app store style)
+- NativeAdContentBox (social feed style)
+- NativeAdFullWidthMediaBox (hero placement)
 
 Key Features:
 - Material 3 integration
@@ -787,7 +868,7 @@ cd Admob-Native-Template-Compose
 
 The sample app demonstrates:
 
-- ✅ **All Five Templates** - Headline, Small, Icon Small, Medium, and Large (CTR Optimized) layouts
+- ✅ **All Eight Templates** - Headline, Small, Icon Small, Medium, Large, App Install, Content Feed, and Full Width Media layouts
 - ✅ **Auto Color Extraction** - Live demonstration of automatic color extraction from ad images
 - ✅ **Live Ad Loading** - Using Google's test ad unit IDs
 - ✅ **Loading States** - Progress indicators while ads load
@@ -799,7 +880,7 @@ The sample app demonstrates:
 
 ### Screenshots
 
-The sample app displays all five template types in a scrollable list with detailed descriptions for each layout.
+The sample app displays all eight template types in a scrollable list with detailed descriptions for each layout.
 
 ### Test Ad Unit ID
 
