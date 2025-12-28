@@ -12,7 +12,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:minHeight="120dp"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:foreground="?android:attr/selectableItemBackground">
 
         <!-- Large Media Image at Top (Enhanced) -->
         <androidx.cardview.widget.CardView
