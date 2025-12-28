@@ -54,7 +54,7 @@ fun NativeAdLargeBox(
                 primary.setTextColor(txtColor)
                 description.setTextColor(txtColor)
                 cta.setTextColor(ctaTxtColor)
-                ctaContainer.setCardBackgroundColor(ctaBgColor)
+                ctaContainer.backgroundTintList = android.content.res.ColorStateList.valueOf(ctaBgColor)
 
                 // Set AD badge colors (harmonize with other text)
                 ad.setTextColor(txtColor)

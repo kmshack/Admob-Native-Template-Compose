@@ -7,14 +7,12 @@
     android:layout_height="wrap_content"
     tools:ignore="ResourceName">
 
-    <androidx.cardview.widget.CardView
+    <FrameLayout
         android:id="@+id/background"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:foreground="?android:attr/selectableItemBackground"
-        app:cardBackgroundColor="#FFFFFF"
-        app:cardCornerRadius="16dp"
-        app:cardElevation="0dp">
+        android:background="@drawable/rounded_16dp"
+        android:clipToOutline="true">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -62,14 +60,13 @@
                 android:padding="16dp">
 
                 <!-- App Icon (Large, Rounded) -->
-                <androidx.cardview.widget.CardView
+                <FrameLayout
                     android:id="@+id/icon_container"
                     android:layout_width="72dp"
                     android:layout_height="72dp"
                     android:visibility="gone"
-                    app:cardBackgroundColor="#fff"
-                    app:cardCornerRadius="20dp"
-                    app:cardElevation="0dp"
+                    android:background="@drawable/rounded_20dp"
+                    android:clipToOutline="true"
                     tools:visibility="visible">
 
                     <ImageView
@@ -78,7 +75,7 @@
                         android:layout_height="72dp"
                         android:scaleType="centerCrop" />
 
-                </androidx.cardview.widget.CardView>
+                </FrameLayout>
 
                 <!-- App Details -->
                 <LinearLayout
@@ -202,7 +199,7 @@
                 </LinearLayout>
 
                 <!-- Install Button (Right Side) -->
-                <androidx.cardview.widget.CardView
+                <FrameLayout
                     android:id="@+id/cta_container"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -210,9 +207,8 @@
                     android:layout_marginStart="12dp"
                     android:clickable="true"
                     android:focusable="true"
-                    app:cardBackgroundColor="#1976D2"
-                    app:cardCornerRadius="20dp"
-                    app:cardElevation="0dp">
+                    android:background="@drawable/rounded_20dp"
+                    android:backgroundTint="#1976D2">
 
                     <TextView
                         android:id="@+id/cta"
@@ -230,7 +226,7 @@
                         android:textStyle="bold"
                         tools:text="Install" />
 
-                </androidx.cardview.widget.CardView>
+                </FrameLayout>
 
             </LinearLayout>
 
@@ -254,6 +250,6 @@
 
         </LinearLayout>
 
-    </androidx.cardview.widget.CardView>
+    </FrameLayout>
 
 </com.google.android.gms.ads.nativead.NativeAdView>

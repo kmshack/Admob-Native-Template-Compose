@@ -80,7 +80,7 @@ fun NativeAdAppInstallBox(
                 }
 
                 // Set background color
-                background.setCardBackgroundColor(bgColor)
+                background.backgroundTintList = android.content.res.ColorStateList.valueOf(bgColor)
 
                 // Set text colors
                 primary.setTextColor(txtColor)
@@ -89,7 +89,7 @@ fun NativeAdAppInstallBox(
                 ratingText.setTextColor(ColorUtils.blendARGB(txtColor, bgColor, 0.4f))
 
                 // Configure CTA button
-                ctaContainer.setCardBackgroundColor(ctaBgColor)
+                ctaContainer.backgroundTintList = android.content.res.ColorStateList.valueOf(ctaBgColor)
                 cta.setTextColor(ctaTxtColor)
 
                 // Set AD badge colors (harmonize with other text)

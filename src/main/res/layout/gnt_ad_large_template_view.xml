@@ -12,41 +12,32 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:minHeight="120dp"
-        android:orientation="vertical"
-        android:foreground="?android:attr/selectableItemBackground">
+        android:orientation="vertical">
 
         <!-- Large Media Image at Top (Enhanced) -->
-        <androidx.cardview.widget.CardView
+        <FrameLayout
             android:id="@+id/ad_image_container"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:visibility="gone"
-            app:cardBackgroundColor="#fff"
-            app:cardCornerRadius="0dp"
-            app:cardElevation="0dp"
+            android:background="#fff"
             tools:visibility="visible">
 
-            <FrameLayout
+            <com.google.android.gms.ads.nativead.MediaView
+                android:id="@+id/ad_media"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:adjustViewBounds="true" />
 
-                <com.google.android.gms.ads.nativead.MediaView
-                    android:id="@+id/ad_media"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:adjustViewBounds="true" />
+            <ImageView
+                android:id="@+id/ad_image"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:adjustViewBounds="true"
+                android:scaleType="fitXY"
+                android:visibility="gone" />
 
-                <ImageView
-                    android:id="@+id/ad_image"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:adjustViewBounds="true"
-                    android:scaleType="fitXY"
-                    android:visibility="gone" />
-
-            </FrameLayout>
-
-        </androidx.cardview.widget.CardView>
+        </FrameLayout>
 
         <!-- Icon and Headline Section -->
         <LinearLayout
@@ -58,14 +49,13 @@
             android:orientation="horizontal">
 
             <!-- Icon Container -->
-            <androidx.cardview.widget.CardView
+            <FrameLayout
                 android:id="@+id/icon_container"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:visibility="gone"
-                app:cardBackgroundColor="#fff"
-                app:cardCornerRadius="25dp"
-                app:cardElevation="0dp">
+                android:background="@drawable/rounded_25dp"
+                android:clipToOutline="true">
 
                 <ImageView
                     android:id="@+id/icon"
@@ -73,7 +63,7 @@
                     android:layout_height="50dp"
                     android:scaleType="centerCrop" />
 
-            </androidx.cardview.widget.CardView>
+            </FrameLayout>
 
             <!-- Headline and Advertiser Info -->
             <LinearLayout
@@ -194,7 +184,7 @@
             tools:text="This is an amazing product that will change your life. Get it now and experience the difference. Limited time offer available!" />
 
         <!-- Large CTA Button with Enhanced Touch Feedback -->
-        <androidx.cardview.widget.CardView
+        <FrameLayout
             android:id="@+id/cta_container"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -204,9 +194,8 @@
             android:layout_marginBottom="20dp"
             android:clickable="true"
             android:focusable="true"
-            app:cardBackgroundColor="#1976D2"
-            app:cardCornerRadius="10dp"
-            app:cardElevation="0dp">
+            android:background="@drawable/rounded_10dp"
+            android:backgroundTint="#1976D2">
 
             <LinearLayout
                 android:id="@+id/cta_button_layout"
@@ -236,7 +225,7 @@
 
             </LinearLayout>
 
-        </androidx.cardview.widget.CardView>
+        </FrameLayout>
 
         <!-- Ad Choices in FrameLayout for absolute positioning -->
         <FrameLayout

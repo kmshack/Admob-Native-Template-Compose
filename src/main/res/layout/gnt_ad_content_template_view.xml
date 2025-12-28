@@ -13,8 +13,7 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:paddingTop="12dp"
-        android:paddingBottom="12dp"
-        android:foreground="?android:attr/selectableItemBackground">
+        android:paddingBottom="12dp">
 
         <!-- Header: Icon + Advertiser + AD Badge (Social Media Style) -->
         <LinearLayout
@@ -26,14 +25,13 @@
             android:orientation="horizontal">
 
             <!-- Profile-style Icon -->
-            <androidx.cardview.widget.CardView
+            <FrameLayout
                 android:id="@+id/icon_container"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:visibility="gone"
-                app:cardBackgroundColor="#fff"
-                app:cardCornerRadius="20dp"
-                app:cardElevation="0dp"
+                android:background="@drawable/rounded_20dp"
+                android:clipToOutline="true"
                 tools:visibility="visible">
 
                 <ImageView
@@ -42,7 +40,7 @@
                     android:layout_height="40dp"
                     android:scaleType="centerCrop" />
 
-            </androidx.cardview.widget.CardView>
+            </FrameLayout>
 
             <!-- Advertiser Name and Sponsored Label -->
             <LinearLayout
@@ -110,7 +108,7 @@
             tools:text="Discover something amazing today. This content will change the way you think about everything. Click to learn more!" />
 
         <!-- Media Content (Card Style) -->
-        <androidx.cardview.widget.CardView
+        <FrameLayout
             android:id="@+id/ad_image_container"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -118,31 +116,25 @@
             android:layout_marginTop="12dp"
             android:layout_marginEnd="16dp"
             android:visibility="gone"
-            app:cardBackgroundColor="#F0F0F0"
-            app:cardCornerRadius="12dp"
-            app:cardElevation="0dp"
+            android:background="@drawable/rounded_12dp"
+            android:backgroundTint="#F0F0F0"
+            android:clipToOutline="true"
             tools:visibility="visible">
 
-            <FrameLayout
+            <com.google.android.gms.ads.nativead.MediaView
+                android:id="@+id/ad_media"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content" />
 
-                <com.google.android.gms.ads.nativead.MediaView
-                    android:id="@+id/ad_media"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+            <ImageView
+                android:id="@+id/ad_image"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:adjustViewBounds="true"
+                android:scaleType="fitCenter"
+                android:visibility="gone" />
 
-                <ImageView
-                    android:id="@+id/ad_image"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:adjustViewBounds="true"
-                    android:scaleType="fitCenter"
-                    android:visibility="gone" />
-
-            </FrameLayout>
-
-        </androidx.cardview.widget.CardView>
+        </FrameLayout>
 
         <!-- Description (Optional - Shows below media) -->
         <TextView
@@ -172,16 +164,15 @@
             android:orientation="horizontal">
 
             <!-- CTA Button (Pill Style) -->
-            <androidx.cardview.widget.CardView
+            <FrameLayout
                 android:id="@+id/cta_container"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:clickable="true"
                 android:focusable="true"
-                app:cardBackgroundColor="#1976D2"
-                app:cardCornerRadius="8dp"
-                app:cardElevation="0dp">
+                android:background="@drawable/rounded_8dp"
+                android:backgroundTint="#1976D2">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -210,7 +201,7 @@
 
                 </LinearLayout>
 
-            </androidx.cardview.widget.CardView>
+            </FrameLayout>
 
         </LinearLayout>
 

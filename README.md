@@ -81,7 +81,7 @@ dependencyResolutionManagement {
 
 ```kotlin
 dependencies {
-    implementation("com.github.kmshack:Admob-Native-Template-Compose:1.2.5")
+    implementation("com.github.kmshack:Admob-Native-Template-Compose:1.2.6")
 }
 ```
 
@@ -541,7 +541,7 @@ When asking AI to help with this library:
 
 ```
 I want to integrate AdMob Native ads in my Jetpack Compose app using the
-"Admob-Native-Template-Compose" library (version 1.2.5).
+"Admob-Native-Template-Compose" library (version 1.2.6).
 
 Please provide:
 1. Complete build.gradle.kts setup including JitPack repository
@@ -815,7 +815,7 @@ Make it production-ready and follow Android best practices.
 ### 🎯 Tips for Best Results
 
 1. **Copy Library Code**: Include relevant code snippets from this README in your prompt
-2. **Version Specific**: Always mention library version (1.2.5) to get accurate syntax
+2. **Version Specific**: Always mention library version (1.2.6 to get accurate syntax
 3. **Be Iterative**: Start with basic implementation, then ask for enhancements
 4. **Request Tests**: Ask AI to generate unit tests for your ad integration
 5. **Ask Why**: Request explanations to understand the implementation

@@ -10,8 +10,7 @@
     <FrameLayout
         android:id="@+id/background"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:foreground="?android:attr/selectableItemBackground">
+        android:layout_height="wrap_content">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -21,15 +20,14 @@
             android:orientation="horizontal">
 
 
-            <androidx.cardview.widget.CardView
+            <FrameLayout
                 android:id="@+id/icon_container"
                 android:layout_width="48dp"
                 android:layout_height="48dp"
                 android:layout_marginStart="15dp"
                 android:visibility="gone"
-                app:cardBackgroundColor="#fff"
-                app:cardCornerRadius="8dp"
-                app:cardElevation="0dp"
+                android:background="@drawable/rounded_8dp"
+                android:clipToOutline="true"
                 tools:visibility="visible">
 
                 <ImageView
@@ -38,7 +36,7 @@
                     android:layout_height="48dp"
                     android:scaleType="centerCrop" />
 
-            </androidx.cardview.widget.CardView>
+            </FrameLayout>
 
 
             <LinearLayout

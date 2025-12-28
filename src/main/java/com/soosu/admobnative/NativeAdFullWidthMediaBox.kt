@@ -67,7 +67,7 @@ fun NativeAdFullWidthMediaBox(
                 }
 
                 // Configure CTA button colors
-                ctaContainer.setCardBackgroundColor(ctaBgColor)
+                ctaContainer.backgroundTintList = android.content.res.ColorStateList.valueOf(ctaBgColor)
                 cta.setTextColor(ctaTxtColor)
 
                 // Set headline

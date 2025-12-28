@@ -36,7 +36,7 @@ fun NativeAdMediumBox(
 
                 val adView = nativeAdView.also { adView ->
                     adView.adChoicesView = adChoice
-                    adView.callToActionView = background
+//                    adView.callToActionView = background
                     adView.headlineView = primary
                     adView.iconView = icon
                     adView.bodyView = description

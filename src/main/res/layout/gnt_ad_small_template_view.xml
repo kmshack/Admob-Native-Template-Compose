@@ -11,8 +11,7 @@
         android:id="@+id/background"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:minHeight="70dp"
-        android:foreground="?android:attr/selectableItemBackground">
+        android:minHeight="70dp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -55,14 +54,13 @@
                     android:gravity="center_vertical"
                     android:orientation="horizontal">
 
-                    <androidx.cardview.widget.CardView
+                    <FrameLayout
                         android:id="@+id/icon_container"
                         android:layout_width="14dp"
                         android:layout_height="14dp"
                         android:visibility="gone"
-                        app:cardBackgroundColor="#fff"
-                        app:cardCornerRadius="7dp"
-                        app:cardElevation="0dp"
+                        android:background="@drawable/rounded_7dp"
+                        android:clipToOutline="true"
                         tools:visibility="visible">
 
                         <ImageView
@@ -71,7 +69,7 @@
                             android:layout_height="14dp"
                             android:scaleType="centerCrop" />
 
-                    </androidx.cardview.widget.CardView>
+                    </FrameLayout>
 
                     <TextView
                         android:id="@+id/ad"
@@ -112,7 +110,7 @@
             </LinearLayout>
 
             <!-- Right Image Container (Increased Size) -->
-            <androidx.cardview.widget.CardView
+            <FrameLayout
                 android:id="@+id/ad_image_container"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -122,9 +120,8 @@
                 android:layout_marginBottom="8dp"
                 android:maxWidth="120dp"
                 android:visibility="gone"
-                app:cardBackgroundColor="#fff"
-                app:cardCornerRadius="6dp"
-                app:cardElevation="0dp"
+                android:background="@drawable/rounded_6dp"
+                android:clipToOutline="true"
                 tools:visibility="visible">
 
                 <ImageView
@@ -135,7 +132,7 @@
                     android:maxWidth="120dp"
                     android:scaleType="centerCrop" />
 
-            </androidx.cardview.widget.CardView>
+            </FrameLayout>
 
         </LinearLayout>
 
