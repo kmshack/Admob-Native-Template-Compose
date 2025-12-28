@@ -57,14 +57,15 @@ fun NativeAdMediumBox(
                     cornerRadius = 6f * ad.context.resources.displayMetrics.density
                 }
 
-
-                if (!nativeAd.advertiser.isNullOrEmpty()) {
-                    secondary.text = " ⋅ ${nativeAd.advertiser}"
-                } else if (!nativeAd.store.isNullOrEmpty()) {
-                    secondary.text = " ⋅ ${nativeAd.store}"
-                } else {
-                    secondary.text = " ⋅⋅⋅"
+                // Set secondary text with fallback chain: body -> advertiser -> store -> callToAction
+                secondary.text = when {
+                    !nativeAd.body.isNullOrEmpty() -> nativeAd.body
+                    !nativeAd.advertiser.isNullOrEmpty() -> nativeAd.advertiser
+                    !nativeAd.store.isNullOrEmpty() -> nativeAd.store
+                    !nativeAd.callToAction.isNullOrEmpty() -> nativeAd.callToAction
+                    else -> "ˑˑˑ"
                 }
+
 
                 nativeAd.headline?.let { headline ->
                     primary.text = headline

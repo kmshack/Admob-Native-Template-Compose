@@ -43,7 +43,6 @@ fun NativeAdIconSmallBox(
                 background.setBackgroundColor(bgColor)
                 secondary.setTextColor(txtColor)
                 primary.setTextColor(txtColor)
-                arrow.setColorFilter(txtColor)
 
                 // Set AD badge colors (harmonize with other text)
                 ad.setTextColor(txtColor)

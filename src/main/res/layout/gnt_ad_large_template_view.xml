@@ -12,9 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:minHeight="120dp"
-        android:orientation="vertical"
-        android:clickable="true"
-        android:focusable="true">
+        android:orientation="vertical">
 
         <!-- Large Media Image at Top (Enhanced) -->
         <androidx.cardview.widget.CardView

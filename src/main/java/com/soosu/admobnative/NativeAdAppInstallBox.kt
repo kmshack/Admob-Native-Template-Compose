@@ -104,14 +104,15 @@ fun NativeAdAppInstallBox(
                     primary.text = headline
                 }
 
-                // Set advertiser/store (developer name)
-                if (!nativeAd.store.isNullOrEmpty()) {
-                    secondary.text = nativeAd.store
-                } else if (!nativeAd.advertiser.isNullOrEmpty()) {
-                    secondary.text = nativeAd.advertiser
-                } else {
-                    secondary.visibility = View.GONE
+                // Set secondary text with fallback chain: body -> advertiser -> store -> callToAction
+                secondary.text = when {
+                    !nativeAd.body.isNullOrEmpty() -> nativeAd.body
+                    !nativeAd.advertiser.isNullOrEmpty() -> nativeAd.advertiser
+                    !nativeAd.store.isNullOrEmpty() -> nativeAd.store
+                    !nativeAd.callToAction.isNullOrEmpty() -> nativeAd.callToAction
+                    else -> "ˑˑˑ"
                 }
+
 
                 // Set call to action
                 nativeAd.callToAction?.let { callToAction ->

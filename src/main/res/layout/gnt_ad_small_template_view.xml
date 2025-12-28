@@ -11,9 +11,7 @@
         android:id="@+id/background"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:minHeight="70dp"
-        android:clickable="true"
-        android:focusable="true">
+        android:minHeight="70dp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -42,7 +40,7 @@
                     android:maxLines="1"
                     android:textAlignment="viewStart"
                     android:textColor="#222"
-                    android:textSize="15sp"
+                    android:textSize="16sp"
                     android:textStyle="bold"
                     tools:text="primary primary primary primary primary primary primary primary primary primary primary primary " />
 
@@ -51,7 +49,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="18dp"
-                    android:layout_marginTop="2dp"
+                    android:layout_marginTop="4dp"
                     android:layout_marginEnd="4dp"
                     android:gravity="center_vertical"
                     android:orientation="horizontal">
@@ -63,7 +61,8 @@
                         android:visibility="gone"
                         app:cardBackgroundColor="#fff"
                         app:cardCornerRadius="7dp"
-                        app:cardElevation="0dp">
+                        app:cardElevation="0dp"
+                        tools:visibility="visible">
 
                         <ImageView
                             android:id="@+id/icon"
@@ -94,6 +93,7 @@
                         android:id="@+id/secondary"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
+                        android:layout_marginStart="4dp"
                         android:layout_weight="1"
                         android:alpha="0.8"
                         android:gravity="center_vertical"
@@ -102,41 +102,11 @@
                         android:singleLine="true"
                         android:textAlignment="viewStart"
                         android:textColor="#555"
-                        android:textSize="11sp" />
+                        android:textSize="12sp" />
 
                 </LinearLayout>
 
                 <!-- CTA + Arrow Button -->
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="18dp"
-                    android:layout_marginTop="6dp"
-                    android:layout_marginEnd="4dp"
-                    android:clickable="true"
-                    android:focusable="true"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:id="@+id/cta"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:ellipsize="end"
-                        android:includeFontPadding="false"
-                        android:maxLines="1"
-                        android:textSize="12sp"
-                        android:textStyle="bold"
-                        tools:text="download" />
-
-                    <ImageView
-                        android:id="@+id/arrow"
-                        android:layout_width="14dp"
-                        android:layout_height="14dp"
-                        android:src="@drawable/round_chevron_right_24"
-                        android:tint="#1976D2" />
-
-                </LinearLayout>
 
             </LinearLayout>
 
@@ -149,7 +119,7 @@
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="16dp"
                 android:layout_marginBottom="8dp"
-                android:maxWidth="140dp"
+                android:maxWidth="120dp"
                 android:visibility="gone"
                 app:cardBackgroundColor="#fff"
                 app:cardCornerRadius="6dp"
@@ -159,9 +129,9 @@
                 <ImageView
                     android:id="@+id/ad_image"
                     android:layout_width="wrap_content"
-                    android:layout_height="70dp"
+                    android:layout_height="64dp"
                     android:adjustViewBounds="true"
-                    android:maxWidth="140dp"
+                    android:maxWidth="120dp"
                     android:scaleType="centerCrop" />
 
             </androidx.cardview.widget.CardView>
