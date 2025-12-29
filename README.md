@@ -2,7 +2,7 @@
 
 <div align="center">
 
-**A modern, declarative AdMob Native Ads library for Jetpack Compose**
+**A modern AdMob Native Ads library for Jetpack Compose and Android Views**
 
 [![](https://jitpack.io/v/kmshack/Admob-Native-Template-Compose.svg)](https://jitpack.io/#kmshack/Admob-Native-Template-Compose)
 [![API](https://img.shields.io/badge/API-25%2B-brightgreen.svg?style=flat)](https://android-arsenal.com/api?level=25)
@@ -15,7 +15,7 @@
 
 ## Overview
 
-AdMob Native Template Compose provides ready-to-use, fully customizable native ad templates built specifically for Jetpack Compose. Seamlessly integrate Google AdMob native ads into your modern Android applications with Material 3 theming support and minimal boilerplate.
+AdMob Native Template Compose provides ready-to-use, fully customizable native ad templates for both Jetpack Compose and traditional Android Views. Seamlessly integrate Google AdMob native ads into your modern Android applications with Material 3 theming support and minimal boilerplate.
 
 > **Looking for NextGen AdMob SDK?**
 > If you want to use the next-generation AdMob SDK, please refer to [NextGen-Admob-Native-Template-Compose](https://github.com/kmshack/NextGen-Admob-Native-Template-Compose).
@@ -26,6 +26,7 @@ AdMob Native Template Compose provides ready-to-use, fully customizable native a
 - 🎨 **Material 3 Integration** - Automatically adapts to your app's theme
 - 🌈 **Auto Color Extraction** - Intelligent color extraction from ad images for seamless integration
 - 📱 **Multiple Templates** - 8 layouts: Small, Icon Small, Medium, Large, Headline, App Install, Content Feed, and Full Width Media
+- 🖼️ **View Support** - Use with traditional Android Views via `NativeAdTemplateView`
 - ⚡ **Type-Safe** - Fully written in Kotlin with null safety
 - 🔧 **Highly Customizable** - Override colors, modifiers, and styling
 - 📈 **CTR Optimized** - Premium template designed for maximum click-through rates
@@ -39,6 +40,7 @@ AdMob Native Template Compose provides ready-to-use, fully customizable native a
 - [Installation](#installation)
 - [Quick Start](#quick-start)
 - [Available Templates](#available-templates)
+- [View-based Usage](#view-based-usage)
 - [API Reference](#api-reference)
 - [Advanced Usage](#advanced-usage)
 - [AI Integration Guide](#ai-integration-guide)
@@ -81,7 +83,7 @@ dependencyResolutionManagement {
 
 ```kotlin
 dependencies {
-    implementation("com.github.kmshack:Admob-Native-Template-Compose:1.2.6")
+    implementation("com.github.kmshack:Admob-Native-Template-Compose:1.2.8")
 }
 ```
 
@@ -346,6 +348,101 @@ NativeAdFullWidthMediaBox(
     ctaTextColor = Color(0xFF1976D2)
 )
 ```
+
+---
+
+## View-based Usage
+
+For projects not using Jetpack Compose, you can use `NativeAdTemplateView` - a custom View that supports all ad templates.
+
+### XML Layout
+
+```xml
+<com.soosu.admobnative.NativeAdTemplateView
+    android:id="@+id/native_ad_view"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:adTemplate="medium"
+    app:adBackgroundColor="#FFFFFF"
+    app:adTextColor="#222222"
+    app:adCtaButtonColor="#1976D2"
+    app:adCtaTextColor="@android:color/white" />
+```
+
+### Available XML Attributes
+
+| Attribute | Type | Description |
+|-----------|------|-------------|
+| `app:adTemplate` | enum | Template type: `small`, `medium`, `large`, `headline`, `iconSmall`, `content`, `fullWidthMedia`, `appInstall` |
+| `app:adBackgroundColor` | color | Background color of the ad |
+| `app:adTextColor` | color | Text color for ad content |
+| `app:adCtaButtonColor` | color | CTA button background color |
+| `app:adCtaTextColor` | color | CTA button text color |
+
+### Kotlin/Java Usage
+
+```kotlin
+import com.soosu.admobnative.NativeAdTemplateView
+import com.soosu.admobnative.AdTemplateType
+
+class MyActivity : AppCompatActivity() {
+
+    private lateinit var nativeAdView: NativeAdTemplateView
+    private var nativeAd: NativeAd? = null
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_my)
+
+        nativeAdView = findViewById(R.id.native_ad_view)
+
+        // Optionally change template programmatically
+        nativeAdView.setTemplate(AdTemplateType.LARGE)
+
+        // Customize colors programmatically
+        nativeAdView.setAdBackgroundColor(Color.WHITE)
+        nativeAdView.setAdTextColor(Color.BLACK)
+        nativeAdView.setCtaButtonColor(Color.BLUE)
+        nativeAdView.setCtaTextColor(Color.WHITE)
+
+        loadNativeAd()
+    }
+
+    private fun loadNativeAd() {
+        val adLoader = AdLoader.Builder(this, "YOUR_AD_UNIT_ID")
+            .forNativeAd { ad ->
+                nativeAd = ad
+                nativeAdView.setNativeAd(ad)
+            }
+            .withNativeAdOptions(
+                NativeAdOptions.Builder()
+                    .setAdChoicesPlacement(NativeAdOptions.ADCHOICES_TOP_RIGHT)
+                    .build()
+            )
+            .build()
+
+        adLoader.loadAd(AdRequest.Builder().build())
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        nativeAd?.destroy()
+    }
+}
+```
+
+### Template Types (AdTemplateType)
+
+| Enum Value | Description |
+|------------|-------------|
+| `SMALL` | Compact horizontal layout |
+| `MEDIUM` | Card layout with media |
+| `LARGE` | Full featured layout with CTA button |
+| `HEADLINE` | Minimal headline-only layout |
+| `ICON_SMALL` | Compact layout with icon |
+| `CONTENT` | Social media style layout |
+| `FULL_WIDTH_MEDIA` | Large media with gradient overlay |
+| `APP_INSTALL` | App store style layout |
 
 ---
 
