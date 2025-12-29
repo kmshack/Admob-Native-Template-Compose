@@ -88,13 +88,5 @@
 
         </LinearLayout>
 
-        <com.google.android.gms.ads.nativead.AdChoicesView
-            android:id="@+id/adChoice"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom|start"
-            android:layout_marginStart="4dp"
-            android:layout_marginBottom="4dp" />
-
     </FrameLayout>
 </com.google.android.gms.ads.nativead.NativeAdView>

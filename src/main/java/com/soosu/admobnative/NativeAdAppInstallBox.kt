@@ -69,7 +69,6 @@ fun NativeAdAppInstallBox(
             ) {
 
                 val adView = nativeAdView.also { adView ->
-                    adView.adChoicesView = adChoice
                     adView.callToActionView = ctaContainer
                     adView.headlineView = primary
                     adView.iconView = icon
