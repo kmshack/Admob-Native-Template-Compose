@@ -1,5 +1,6 @@
 package com.soosu.admobnative.sample
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -23,6 +24,7 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
+import androidx.compose.material3.TextButton
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
@@ -69,7 +71,11 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    MainScreen()
+                    MainScreen(
+                        onViewSampleClick = {
+                            startActivity(Intent(this, ViewSampleActivity::class.java))
+                        }
+                    )
                 }
             }
         }
@@ -90,7 +96,9 @@ fun AdMobNativeSampleTheme(content: @Composable () -> Unit) {
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun MainScreen() {
+fun MainScreen(
+    onViewSampleClick: () -> Unit = {}
+) {
     val context = LocalContext.current
 
     // State for each ad type
@@ -330,6 +338,14 @@ fun MainScreen() {
                         "AdMob Native Ad Templates",
                         fontWeight = FontWeight.Bold
                     )
+                },
+                actions = {
+                    TextButton(onClick = onViewSampleClick) {
+                        Text(
+                            "View Sample",
+                            color = MaterialTheme.colorScheme.onPrimaryContainer
+                        )
+                    }
                 },
                 colors = TopAppBarDefaults.topAppBarColors(
                     containerColor = MaterialTheme.colorScheme.primaryContainer,

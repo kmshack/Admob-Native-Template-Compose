@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="NativeAdTemplateView">
+        <attr name="adTemplate" format="enum">
+            <enum name="small" value="0" />
+            <enum name="medium" value="1" />
+            <enum name="large" value="2" />
+            <enum name="headline" value="3" />
+            <enum name="iconSmall" value="4" />
+            <enum name="content" value="5" />
+            <enum name="fullWidthMedia" value="6" />
+            <enum name="appInstall" value="7" />
+        </attr>
+        <attr name="adBackgroundColor" format="color" />
+        <attr name="adTextColor" format="color" />
+        <attr name="adCtaButtonColor" format="color" />
+        <attr name="adCtaTextColor" format="color" />
+    </declare-styleable>
+
+</resources>
