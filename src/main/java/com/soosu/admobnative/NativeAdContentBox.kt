@@ -168,28 +168,3 @@ fun NativeAdContentBox(
     }
 
 }
-
-/**
- * Calculate AD badge background color based on the main background color
- */
-private fun getAdBadgeBackgroundColor(backgroundColor: Int): Int {
-    val luminance = ColorUtils.calculateLuminance(backgroundColor)
-
-    return if (luminance > 0.5) {
-        ColorUtils.blendARGB(backgroundColor, android.graphics.Color.BLACK, 0.12f)
-    } else {
-        ColorUtils.blendARGB(backgroundColor, android.graphics.Color.WHITE, 0.12f)
-    }
-}
-
-/**
- * Calculate text color for AD badge based on badge background color
- */
-private fun getAdBadgeTextColor(badgeBackgroundColor: Int): Int {
-    val luminance = ColorUtils.calculateLuminance(badgeBackgroundColor)
-    return if (luminance > 0.5) {
-        android.graphics.Color.parseColor("#333333")
-    } else {
-        android.graphics.Color.parseColor("#EEEEEE")
-    }
-}

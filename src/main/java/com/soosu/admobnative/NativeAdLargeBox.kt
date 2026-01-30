@@ -43,8 +43,6 @@ fun NativeAdLargeBox(
                     adView.headlineView = primary
                     adView.iconView = icon
                     adView.bodyView = description
-                    adView.starRatingView = ratingBar
-                    adView.priceView = price
                     adView.mediaView = adMedia
                 }
 
@@ -130,18 +128,6 @@ fun NativeAdLargeBox(
                         adImage.setImageDrawable(image.drawable)
                         adImageContainer.visibility = View.VISIBLE
                     }
-                }
-
-                // Set star rating
-                nativeAd.starRating?.let { rating ->
-                    ratingBar.rating = rating.toFloat()
-                    ratingBar.visibility = View.VISIBLE
-                }
-
-                // Set price
-                nativeAd.price?.let { priceValue ->
-                    price.text = priceValue
-                    price.visibility = View.VISIBLE
                 }
 
                 adView.setNativeAd(nativeAd)

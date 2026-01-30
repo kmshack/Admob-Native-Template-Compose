@@ -1,6 +1,7 @@
 package com.soosu.admobnative
 
 import android.annotation.SuppressLint
+import android.graphics.drawable.GradientDrawable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
@@ -9,6 +10,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.viewinterop.AndroidViewBinding
+import androidx.core.graphics.ColorUtils
 import com.google.android.gms.ads.nativead.NativeAd
 import com.soosu.admobnative.databinding.GntAdHeadlineTemplateViewBinding
 
@@ -41,6 +43,12 @@ fun NativeAdHeadlineBox(
                 bar.setTextColor(txtColor)
                 arrow.setColorFilter(textColor.toArgb())
 
+                // Set AD badge colors (harmonize with other text)
+                ad.setTextColor(txtColor)
+                ad.background = GradientDrawable().apply {
+                    setColor(ColorUtils.setAlphaComponent(txtColor, 38))
+                    cornerRadius = 6f * ad.context.resources.displayMetrics.density
+                }
 
                 nativeAd.headline?.let { headline ->
                     primary.text = headline

@@ -43,6 +43,8 @@ import com.soosu.admobnative.databinding.GntAdFullwidthMediaTemplateViewBinding
 fun NativeAdFullWidthMediaBox(
     nativeAd: NativeAd?,
     modifier: Modifier = Modifier,
+    backgroundColor: Color = MaterialTheme.colorScheme.surfaceVariant,
+    textColor: Color = MaterialTheme.colorScheme.onBackground,
     ctaButtonColor: Color = Color.White,
     ctaTextColor: Color = Color(0xFF1976D2)
 ) {
@@ -50,6 +52,8 @@ fun NativeAdFullWidthMediaBox(
     Box(modifier = modifier) {
 
         if (nativeAd != null) {
+            val bgColor = backgroundColor.toArgb()
+            val txtColor = textColor.toArgb()
             val ctaBgColor = ctaButtonColor.toArgb()
             val ctaTxtColor = ctaTextColor.toArgb()
 
@@ -75,10 +79,10 @@ fun NativeAdFullWidthMediaBox(
                     primaryFallback.text = headline
                 }
 
-                // Set AD badge with semi-transparent background for overlay style
-                ad.setTextColor(ctaBgColor)
+                // Set AD badge colors (harmonize with other text)
+                ad.setTextColor(txtColor)
                 ad.background = GradientDrawable().apply {
-                    setColor(ctaTxtColor)
+                    setColor(ColorUtils.setAlphaComponent(txtColor, 38))
                     cornerRadius = 6f * ad.context.resources.displayMetrics.density
                 }
 
