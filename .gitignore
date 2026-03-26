@@ -32,3 +32,12 @@ google-services.json
 
 # Android Profiling
 *.hprof
+
+.kotlin/
+
+# Android / Gradle / local env
+/build/
+**/build/
+keystore.properties
+*.pem
+*.key
