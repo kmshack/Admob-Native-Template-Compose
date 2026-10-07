@@ -5,7 +5,7 @@
 **A modern AdMob Native Ads library for Jetpack Compose and Android Views**
 
 [![](https://jitpack.io/v/kmshack/Admob-Native-Template-Compose.svg)](https://jitpack.io/#kmshack/Admob-Native-Template-Compose)
-[![API](https://img.shields.io/badge/API-25%2B-brightgreen.svg?style=flat)](https://android-arsenal.com/api?level=25)
+[![API](https://img.shields.io/badge/API-23%2B-brightgreen.svg?style=flat)](https://android-arsenal.com/api?level=23)
 [![Kotlin](https://img.shields.io/badge/Kotlin-2.1.0-blue.svg?logo=kotlin)](http://kotlinlang.org)
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 
@@ -53,11 +53,11 @@ AdMob Native Template Compose provides ready-to-use, fully customizable native a
 
 ## Requirements
 
-- **Minimum SDK**: 25 (Android 7.1)
+- **Minimum SDK**: 23 (Android 6.0)
 - **Compile SDK**: 36+
-- **Kotlin**: 1.9.0+
+- **Kotlin**: 2.1.0+
 - **Jetpack Compose**: BOM 2025.06.00+
-- **Google Play Services Ads**: 24.4.0+
+- **Google Play Services Ads**: 24.9.0 (used by this library)
 
 ---
 
@@ -83,9 +83,11 @@ dependencyResolutionManagement {
 
 ```kotlin
 dependencies {
-    implementation("com.github.kmshack:Admob-Native-Template-Compose:1.3.0")
+    implementation("com.github.kmshack:Admob-Native-Template-Compose:1.3.1")
 }
 ```
+
+Version **1.3.1** is available as a [GitHub tag](https://github.com/kmshack/Admob-Native-Template-Compose/tree/1.3.1) with a successful [JitPack build](https://jitpack.io/#kmshack/Admob-Native-Template-Compose/1.3.1).
 
 **Step 3:** Sync your project
 
@@ -108,7 +110,11 @@ Add your AdMob App ID to `AndroidManifest.xml`:
 ### 2. Load and Display a Native Ad
 
 ```kotlin
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.*
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.unit.dp
 import androidx.compose.ui.platform.LocalContext
 import com.google.android.gms.ads.AdLoader
 import com.google.android.gms.ads.AdRequest
@@ -121,9 +127,18 @@ fun MyScreen() {
     val context = LocalContext.current
     var nativeAd by remember { mutableStateOf<NativeAd?>(null) }
 
-    LaunchedEffect(Unit) {
+    DisposableEffect(context) {
+        var disposed = false
         val adLoader = AdLoader.Builder(context, "YOUR_AD_UNIT_ID")
-            .forNativeAd { ad -> nativeAd = ad }
+            .forNativeAd { ad ->
+                if (disposed) {
+                    // Loading may finish after this screen leaves composition.
+                    ad.destroy()
+                } else {
+                    nativeAd?.destroy()
+                    nativeAd = ad
+                }
+            }
             .withNativeAdOptions(
                 NativeAdOptions.Builder()
                     .setAdChoicesPlacement(NativeAdOptions.ADCHOICES_TOP_RIGHT)
@@ -132,6 +147,12 @@ fun MyScreen() {
             .build()
 
         adLoader.loadAd(AdRequest.Builder().build())
+
+        onDispose {
+            disposed = true
+            nativeAd?.destroy()
+            nativeAd = null
+        }
     }
 
     // Display the ad
@@ -529,7 +550,9 @@ MaterialTheme(
 
 ### Memory Management
 
-Remember to destroy ads when the composable leaves the composition:
+The screen that loads an ad owns its lifecycle. Destroy ads when the composable leaves the composition, and destroy any ad delivered after disposal (as shown in [Quick Start](#quick-start)). If you replace an ad, destroy the previous one before assigning the replacement.
+
+For an ad already stored in state:
 
 ```kotlin
 @Composable
@@ -638,7 +661,7 @@ When asking AI to help with this library:
 
 ```
 I want to integrate AdMob Native ads in my Jetpack Compose app using the
-"Admob-Native-Template-Compose" library (version 1.3.0).
+"Admob-Native-Template-Compose" library (version 1.3.1).
 
 Please provide:
 1. Complete build.gradle.kts setup including JitPack repository
@@ -912,7 +935,7 @@ Make it production-ready and follow Android best practices.
 ### 🎯 Tips for Best Results
 
 1. **Copy Library Code**: Include relevant code snippets from this README in your prompt
-2. **Version Specific**: Always mention library version (1.3.0 to get accurate syntax
+2. **Version Specific**: Always mention library version (1.3.1) to get accurate syntax
 3. **Be Iterative**: Start with basic implementation, then ask for enhancements
 4. **Request Tests**: Ask AI to generate unit tests for your ad integration
 5. **Ask Why**: Request explanations to understand the implementation
@@ -927,7 +950,7 @@ When asking for help, provide these details for better responses:
 
 ```
 Library: Admob-Native-Template-Compose
-Version: 1.1.3
+Version: 1.3.1
 GitHub: https://github.com/kmshack/Admob-Native-Template-Compose
 JitPack: https://jitpack.io/#kmshack/Admob-Native-Template-Compose
 
@@ -958,7 +981,7 @@ My Tech Stack:
 
 ## Sample App
 
-A complete sample application is included in this repository demonstrating all three ad templates.
+A complete sample application is included in this repository demonstrating all eight ad templates.
 
 ### Running the Sample
 
@@ -1004,16 +1027,15 @@ ca-app-pub-3940256099942544/2247696110
 
 ## Dependencies
 
-This library uses the following dependencies:
+The library module declares the following dependencies in `build.gradle.kts`:
 
 | Dependency | Version | Purpose |
 |------------|---------|---------|
 | Jetpack Compose BOM | 2025.06.00 | Compose runtime and UI |
-| Material 3 | 1.3.2+ | Material Design components |
-| Google Play Services Ads | 24.7.0 | AdMob SDK |
+| Material 3 | Managed by Compose BOM | Material Design components |
+| Compose UI tooling preview / UI viewbinding | Managed by Compose BOM | Preview and Android View integration |
+| Google Play Services Ads | 24.9.0 | AdMob SDK |
 | Palette KTX | 1.0.0 | Auto color extraction from images |
-| AndroidX Core KTX | 1.16.0 | Core Android utilities |
-| CardView | 1.0.0 | Card components |
 
 ---
 
